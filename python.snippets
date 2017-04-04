@@ -1,13 +1,43 @@
 # New Class
 snippet abq
 alias abaqus
-    from abaqus import (amplitude, assembly, interaction, job, load,
-                        mesh, part, regionToolSet, section, session,
-                        sketch, step, visualization, xyPlot, mdb)
+    import os
+    from abaqus import (session, mdb, backwardCompatibility, monitorManager)
+    from odbAccess import Odb
     from abaqusConstants import *
+    from jobMessage import *
+    import assembly
+    import datum
+    import interaction
+    import job
+    import load
+    import material
+    import mesh
+    import part
+    import partition
+    import regionToolset
+    import section
+    import sketch
+    import step
+    import visualization
+    import xyPlot
+    import displayGroupMdbToolset as dgm
+    import displayGroupOdbToolset as dgo
     # Set backward compatibility
-    backwardCompatibility.setValues(includeDeprecated=False,
-                                    reportDeprecated=True)
+    backwardCompatibility.setValues(includeDeprecated=False, reportDeprecated=True)
+    ${0}
+
+# set working directory
+snippet workdir
+alias setwd
+    work_dir = r"${1:working directory}"
+    if os.name == 'posix':
+        ensure_dir(r"/home/ctapia/Abaqus_Results/" + work_dir)
+        os.chdir(r"/home/ctapia/Abaqus_Results/" + work_dir)
+    # else is windows
+    else:
+        ensure_dir(r"D:\Abaqus_Tapia\\" + work_dir)
+        os.chdir(r"D:\Abaqus_Tapia\\" + work_dir)
     ${0}
 
 # start abaqus model
@@ -16,8 +46,8 @@ alias abaqusmodel
     # Model
     model = mdb.Model(name='${1:model name}')
     # Viewport
-    viewp = session.Viewport(name='$1', origin=(20, 0),
-                             width=450, height=170)
+    viewp = session.Viewport(name='$1', origin=(20, 0), width=450,
+                             height=170)
     ${0}
 
 # create sketch
@@ -26,6 +56,12 @@ alias abaqussktch
     sketch = ${1:model}.ConstrainedSketch(
         name='${2:name}', sheetSize=200.)
     ${0}
+
+# create part
+snippet abqpart
+alias abaquspart
+    part = ${1:model}.Part(name='${2:name}', dimensionality=TWO_D_PLANAR,
+                           type=DEFORMABLE_BODY)
 
 
 # define the viridis color map in abaqus
