@@ -2,8 +2,8 @@
 snippet abq
 alias abaqus
     from abaqus import (amplitude, assembly, interaction, job, load,
-                        mesh, part, regionToolSet, section, sketch,
-                        step, visualization, xyPlot, mdb)
+                        mesh, part, regionToolSet, section, session,
+                        sketch, step, visualization, xyPlot, mdb)
     from abaqusConstants import *
     # Set backward compatibility
     backwardCompatibility.setValues(includeDeprecated=False,
@@ -11,7 +11,7 @@ alias abaqus
     ${0}
 
 # start abaqus model
-snippet abaqmod
+snippet abqmod
 alias abaqusmodel
     # Model
     model = mdb.Model(name='${1:model name}')
@@ -29,7 +29,7 @@ alias abaqussktch
 
 
 # define the viridis color map in abaqus
-snippet abqviridis
+snippet abqvir
 alias abaqusviridis
     # create viridis spectrum (we all love this! <3 )
     colors_viridis = (
@@ -85,9 +85,7 @@ alias abaqusviridis
 # define function to ensure directory
 snippet ensuredir
     def ensure_dir(f):
-        """look up for the directory 'f' and creates it
-        if it doesn't exist.
-        """
+        """look up for the directory 'f' and creates it if it doesn't exist."""
         import os
         if not os.path.exists(f):
             os.makedirs(f)
