@@ -32,12 +32,12 @@ snippet workdir
 alias setwd
     work_dir = r"${1:working directory}"
     if os.name == 'posix':
-        ensure_dir(r"/home/ctapia/Abaqus_Results/" + work_dir)
-        os.chdir(r"/home/ctapia/Abaqus_Results/" + work_dir)
+        ensure_dir(r"/home/ctapia/Abaqus_Results" + os.sep + work_dir)
+        os.chdir(r"/home/ctapia/Abaqus_Results" + os.sep + work_dir)
     # else is windows
     else:
-        ensure_dir(r"D:\Abaqus_Tapia\\" + work_dir)
-        os.chdir(r"D:\Abaqus_Tapia\\" + work_dir)
+        ensure_dir(r"D:\Abaqus_Tapia" + os.sep + work_dir)
+        os.chdir(r"D:\Abaqus_Tapia" + os.sep + work_dir)
     ${0}
 
 # start abaqus model
