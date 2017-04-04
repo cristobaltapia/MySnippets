@@ -1,5 +1,6 @@
 # New Class
-snippet abaq
+snippet abq
+alias abaqus
     from abaqus import (amplitude, assembly, interaction, job, load,
                         mesh, part, regionToolSet, section, sketch,
                         step, visualization, xyPlot, mdb)
@@ -9,19 +10,9 @@ snippet abaq
                                     reportDeprecated=True)
     ${0}
 
-# define function to ensure directory
-snippet ensuredir
-    def ensure_dir(f):
-        """look up for the directory 'f' and creates it
-        if it doesn't exist.
-        """
-        import os
-        if not os.path.exists(f):
-            os.makedirs(f)
-    ${0}
-
 # start abaqus model
 snippet abaqmod
+alias abaqusmodel
     # Model
     model = mdb.Model(name='${1:model name}')
     # Viewport
@@ -31,13 +22,15 @@ snippet abaqmod
 
 # create sketch
 snippet abqsk
+alias abaqussktch
     sketch = ${1:model}.ConstrainedSketch(
         name='${2:name}', sheetSize=200.)
     ${0}
 
 
 # define the viridis color map in abaqus
-snippet abaqviridis
+snippet abqviridis
+alias abaqusviridis
     # create viridis spectrum (we all love this! <3 )
     colors_viridis = (
         '#440154', '#440255', '#440357', '#450558', '#45065a', '#45085b',
@@ -87,5 +80,16 @@ snippet abaqviridis
     colors_viridis_reversed = list(reversed(colors_viridis))
     session.Spectrum(name="Viridis", colors=colors_viridis)
     session.Spectrum(name="Reversed Viridis", colors=colors_viridis_reversed)
+    ${0}
+
+# define function to ensure directory
+snippet ensuredir
+    def ensure_dir(f):
+        """look up for the directory 'f' and creates it
+        if it doesn't exist.
+        """
+        import os
+        if not os.path.exists(f):
+            os.makedirs(f)
     ${0}
 
