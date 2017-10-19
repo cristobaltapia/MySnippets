@@ -56,12 +56,27 @@ sketch = ${1:model}.ConstrainedSketch(
 ${0}
 endsnippet
 
-# create part
+# create part (2D)
 snippet abqpart "Create an Abaqus part" b
-part = ${1:model}.Part(name='${2:name}', dimensionality=TWO_D_PLANAR,
-					  type=DEFORMABLE_BODY)
+part = ${1:model}.Part(name='${2:name}', dimensionality=TWO_D_PLANAR, type=DEFORMABLE_BODY)
 endsnippet
 
+# Define elastic material (2D)
+snippet abqmat "Create an Abaqus elastic material" b
+props = (${1:Ex}, ${2:Ey}, ${3:nu}, ${4:Gxy})
+
+${5:material} = ${6:model}.Material(name='${7:name}')
+${5:material}.Elastic(table=(${8:props}, ), type=LAMINA)
+endsnippet
+
+# Create section and assign to part
+snippet abqsec "Create an Abaqus elastic material" b
+${1:section} = ${2:model}.HomogeneousSolidSection(name='${3:name}', material=${4:mat_1}.name, thickness=${5:thickness})
+# Create sets to assign section to
+set_faces = ${6:part}.Set(faces=${6:part}.faces[:], name='set ${6:part}')
+
+${6:part}.SectionAssignment(region=set_faces, sectionName=${1:section}.name, thicknessAssignment=FROM_SECTION)
+endsnippet
 
 # define the viridis color map in abaqus
 snippet abqvir
