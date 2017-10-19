@@ -1,5 +1,5 @@
 # New Class
-snippet abq "imports for Abaqus" b
+snippet abq "Insert required imports for Abaqus" b
 import os
 from abaqus import (session, mdb, backwardCompatibility, monitorManager)
 from odbAccess import Odb
@@ -28,7 +28,7 @@ ${0}
 endsnippet
 
 # set working directory
-snippet workdir
+snippet abqworkdir "Change working directory in Abaqus" b
 work_dir = r"${1:working directory}"
 if os.name == 'posix':
 	ensure_dir(r"/home/ctapia/Abaqus_Results" + os.sep + work_dir)
@@ -41,7 +41,7 @@ ${0}
 endsnippet
 
 # start abaqus model
-snippet abqmod
+snippet abqmod "Create an Abaqus model object" b
 # Model
 model = mdb.Model(name='${1:model name}')
 # Viewport
@@ -66,20 +66,20 @@ snippet abqmat "Create an Abaqus elastic material" b
 props = (${1:Ex}, ${2:Ey}, ${3:nu}, ${4:Gxy})
 
 ${5:material} = ${6:model}.Material(name='${7:name}')
-${5:material}.Elastic(table=(${8:props}, ), type=LAMINA)
+$5.Elastic(table=(${8:props}, ), type=LAMINA)
 endsnippet
 
 # Create section and assign to part
 snippet abqsec "Create an Abaqus elastic material" b
 ${1:section} = ${2:model}.HomogeneousSolidSection(name='${3:name}', material=${4:mat_1}.name, thickness=${5:thickness})
 # Create sets to assign section to
-set_faces = ${6:part}.Set(faces=${6:part}.faces[:], name='set ${6:part}')
+set_faces = ${6:part}.Set(faces=$6.faces[:], name='set $6')
 
-${6:part}.SectionAssignment(region=set_faces, sectionName=${1:section}.name, thicknessAssignment=FROM_SECTION)
+$6.SectionAssignment(region=set_faces, sectionName='$3', thicknessAssignment=FROM_SECTION)
 endsnippet
 
 # define the viridis color map in abaqus
-snippet abqvir
+snippet abqvir "Insert Viridis colormap to Abaqus" b
 # create viridis spectrum (we all love this! <3 )
 colors_viridis = (
 	'#440154', '#440255', '#440357', '#450558', '#45065a', '#45085b',
@@ -133,7 +133,7 @@ ${0}
 endsnippet
 
 # define function to ensure directory
-snippet ensuredir
+snippet ensuredir "Creates a folder if it does not exist" b
 def ensure_dir(f):
 	"""look up for the directory 'f' and creates it if it doesn't exist."""
 	import os
