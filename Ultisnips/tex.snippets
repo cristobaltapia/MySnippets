@@ -1,98 +1,16 @@
 extends tex
 
-
-################################################################################
-# Templates for LaTeX files
-################################################################################
-# Tamplete for presentations with the Beamer package
-snippet ttbeamer "Beamer presentation template" b
-% Copyright 2007 by Till Tantau
-%
-% This file may be distributed and/or modified
-%
-% 1. under the LaTeX Project Public License and/or
-% 2. under the GNU Public License.
-%
-% See the file doc/licenses/LICENSE for more details.
-
-\documentclass[xcolor=svgnames]{beamer}
-
-% Setup appearance:
-
-\usetheme{Darmstadt}
-\usecolortheme[named=SteelBlue]{structure} 
-\usefonttheme[onlylarge]{structurebold}
-\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
-\setbeamertemplate{navigation symbols}{}
-\beamertemplateshadingbackground{white}{MintCream}
-\useoutertheme{infolines} 
-\setbeamertemplate{items}[square] 
-
-% Standard packages
-
-\usepackage[spanish]{babel}
-\usepackage[utf8x]{inputenc}
-\usepackage{times}
-\usepackage[T1]{fontenc}
-
-% Setup TikZ
-
-\usepackage{tikz}
-\usetikzlibrary{arrows}
-\tikzstyle{block}=[draw opacity=0.7,line width=1.4cm]
-
-% Author, Title, etc.
-
-\title[${1:Short Title}] 
-{%
-${2:Title}%
-}
-
-\subtitle[${3:Short subtitle}]
-{%
-${4:Subtitle}
-}
-
-\author[${5:Author}]
-{
-${6:Authors}
-}
-
-\institute[${7:FCFM, U de Chile}]
-{
-${8:FCFM, Universidad de Chile}
-}
-
-\date[${9:Short date}]
-{${10:Date}}
-
-% The main document
-
-\begin{document}
-
-\begin{frame}
-	\titlepage
-\end{frame}
-
-\begin{frame}{Contenido}
-	\tableofcontents
-\end{frame}
-
-\section{${11:Introduction}}
-\subsection{${12:Subsection}}
-
-\begin{frame}[t]{${13:Name of first slide}}
-	\begin{block}{${14:Name for the first block}}
-		\begin{itemize}[<+->]
-			\item ${0}
-		\end{itemize}
-	\end{block}
-	\begin{block}{${15:Name for the second block}}
-		\begin{itemize}
-			\item 
-		\end{itemize}
-	\end{block}
-\end{frame}
-
-\end{document}
+# Include standalone
+snippet standalone "Inlcude a standalone image" b
+\includestandalone[mode=tex]{${1:file}}${0}
 endsnippet
+
+snippet subfig "Include subfigure env"
+\begin{subfigure}[${1:b}]{${2:1}\textsize}
+  \includegraphics[]{}
+  \caption{${3}}%
+  \label{fig:${4}}
+\end{subfigure}${0}
+endsnippet
+
+
