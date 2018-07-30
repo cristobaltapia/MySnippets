@@ -37,7 +37,7 @@ rc_params_gruyter = {
 		r'\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Arial}',
 	],
 }
-mpl.rcParams.update(rcparams_gruyter)
+mpl.rcParams.update(rc_params_gruyter)
 # Optimal figure size: (2.8, 2.0)
 endsnippet
 
@@ -55,19 +55,52 @@ rc_params_inter = {
 	"pgf.texsystem": 'lualatex',
 	"pgf.preamble": [
 		r"\usepackage{fontspec}",
+	r"\PassOptionsToPackage{no-math}{fontspec}",
+	r"\usepackage{amsmath}",
+	r"\usepackage{siunitx}",
+	r"\usepackage{unicode-math}",
+	r"\setmainfont{Calibri, Light}",
+	r"\setmathfont{Latin Modern Math}",
+	r"\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Calibri Light}",
+	r"\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Calibri}",
+	r"\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Calibri Light Italic}",
+	r"\setmathfont[range=\mathbfit/{num,greek,Greek}]{Calibri Italic}",
+	r'\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Calibri Light}',
+	],
+}
+mpl.rcParams.update(rc_params_inter)
+# Optimal figure size: (3.4, 2.4)
+endsnippet
+
+# rc Params for MPA presentation
+snippet rcparams_mpa_presentation "rcParams for MPA presentation" b
+# Add the following befor importing pyplot:
+# import matplotlib as mpl
+# mpl.use('pgf')
+rc_params_plot = {
+	"font.size": 10,
+	"legend.fontsize": 12,
+	"axes.labelsize": 10,
+	"lines.linewidth": 1.0,
+	"lines.markersize": 5,
+	"text.usetex": False,
+	"pgf.rcfonts": False,
+	"pgf.texsystem": 'lualatex',
+	"pgf.preamble": [
+		r"\usepackage{fontspec}",
 		r"\PassOptionsToPackage{no-math}{fontspec}",
 		r"\usepackage{amsmath}",
 		r"\usepackage{siunitx}",
 		r"\usepackage{unicode-math}",
-		r"\setmainfont{Calibri, Light}",
+		r"\setmainfont{Arial}",
 		r"\setmathfont{Latin Modern Math}",
-		r"\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Calibri Light}",
-		r"\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Calibri}",
-		r"\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Calibri Light Italic}",
-		r"\setmathfont[range=\mathbfit/{num,greek,Greek}]{Calibri Italic}",
-		r'\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Calibri Light}',
+		r"\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Arial}",
+		r"\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Arial Bold}",
+		r"\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Arial Italic}",
+		r"\setmathfont[range=\mathbfit/{num,greek,Greek}]{Arial Bold Italic}",
+		r'\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Arial}',
 	],
 }
-mpl.rcParams.update(rcparams_inter)
+mpl.rcParams.update(rc_params_mpa_presentation)
 # Optimal figure size: (3.4, 2.4)
 endsnippet
