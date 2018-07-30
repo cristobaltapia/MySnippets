@@ -20,23 +20,23 @@ rc_params_gruyter = {
 	"lines.linewidth": 1.0,
 	"lines.markersize": 5,
 	"text.usetex": True,
-	"pgf.rcfonts": True,
+	"pgf.rcfonts": False,
 	"pgf.texsystem": 'lualatex',
 	"pgf.preamble": [
 		r"\usepackage{fontspec}",
-		r"\PassOptionsToPackage{no-math}{fontspec}",
-		r"\usepackage{amsmath}",
-		r"\usepackage{siunitx}",
-		r"\usepackage{unicode-math}",
-		r"\setmainfont{Arial}",
-		r"\setmathfont{Latin Modern Math}",
-		r"\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Arial}",
-		r"\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Arial Bold}",
-		r"\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Arial Italic}",
-		r"\setmathfont[range=\mathbfit/{num,greek,Greek}]{Arial Bold Italic}",
-		r'\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Arial}',
-	],
-}
+	r"\PassOptionsToPackage{no-math}{fontspec}",
+	r"\usepackage{amsmath}",
+	r"\usepackage{siunitx}",
+	r"\usepackage{unicode-math}",
+	r"\setmainfont{Univers for UniS 55 Roman}",
+	r"\setsansfont{Univers for UniS 55 Roman}",
+	r"\setmathfont{Latin Modern Math}",
+	r"\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Univers for UniS 55 Roman}",
+	r"\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Univers for UniS 65 Bold}",
+	r"\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Univers for UniS 45 Light Oblique}",
+	r"\setmathfont[range=\mathbfit/{num,greek,Greek}]{Univers for UniS 65 Bold}",
+#  r'\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Univers for UniS 55 Roman}',
+	], }
 mpl.rcParams.update(rc_params_gruyter)
 # Optimal figure size: (2.8, 2.0)
 endsnippet
@@ -60,6 +60,7 @@ rc_params_inter = {
 		r"\usepackage{siunitx}",
 		r"\usepackage{unicode-math}",
 		r"\setmainfont{Calibri, Light}",
+		r"\setsansfont{Calibri, Light}",
 		r"\setmathfont{Latin Modern Math}",
 		r"\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Calibri Light}",
 		r"\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Calibri}",
@@ -77,7 +78,6 @@ snippet rcparams_mpa_presentation "rcParams for MPA presentation" b
 # Add the following befor importing pyplot:
 # import matplotlib as mpl
 # mpl.use('pgf')
-
 rc_params_plot = {
 	"font.size": 10,
 	"legend.fontsize": 8,
@@ -95,6 +95,7 @@ rc_params_plot = {
 		r"\usepackage{siunitx}",
 		r"\usepackage{unicode-math}",
 		r"\setmainfont{Arial}",
+		r"\setsansfont{Arial}",
 		r"\setmathfont{Latin Modern Math}",
 		r"\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Arial}",
 		r"\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Arial Bold}",
