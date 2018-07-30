@@ -19,8 +19,8 @@ rc_params_gruyter = {
 	"axes.labelsize": 8,
 	"lines.linewidth": 1.0,
 	"lines.markersize": 5,
-	"text.usetex": False,
-	"pgf.rcfonts": False,
+	"text.usetex": True,
+	"pgf.rcfonts": True,
 	"pgf.texsystem": 'lualatex',
 	"pgf.preamble": [
 		r"\usepackage{fontspec}",
@@ -50,22 +50,22 @@ rc_params_inter = {
 	"font.size": 12,
 	"legend.fontsize": 10,
 	"lines.markersize": 8,
-	"text.usetex": False,
-	"pgf.rcfonts": False,
+	"text.usetex": True,
+	"pgf.rcfonts": True,
 	"pgf.texsystem": 'lualatex',
 	"pgf.preamble": [
 		r"\usepackage{fontspec}",
-	r"\PassOptionsToPackage{no-math}{fontspec}",
-	r"\usepackage{amsmath}",
-	r"\usepackage{siunitx}",
-	r"\usepackage{unicode-math}",
-	r"\setmainfont{Calibri, Light}",
-	r"\setmathfont{Latin Modern Math}",
-	r"\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Calibri Light}",
-	r"\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Calibri}",
-	r"\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Calibri Light Italic}",
-	r"\setmathfont[range=\mathbfit/{num,greek,Greek}]{Calibri Italic}",
-	r'\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Calibri Light}',
+		r"\PassOptionsToPackage{no-math}{fontspec}",
+		r"\usepackage{amsmath}",
+		r"\usepackage{siunitx}",
+		r"\usepackage{unicode-math}",
+		r"\setmainfont{Calibri, Light}",
+		r"\setmathfont{Latin Modern Math}",
+		r"\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Calibri Light}",
+		r"\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Calibri}",
+		r"\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Calibri Light Italic}",
+		r"\setmathfont[range=\mathbfit/{num,greek,Greek}]{Calibri Italic}",
+		r'\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Calibri Light}',
 	],
 }
 mpl.rcParams.update(rc_params_inter)
@@ -77,14 +77,16 @@ snippet rcparams_mpa_presentation "rcParams for MPA presentation" b
 # Add the following befor importing pyplot:
 # import matplotlib as mpl
 # mpl.use('pgf')
+
 rc_params_plot = {
 	"font.size": 10,
-	"legend.fontsize": 10,
+	"legend.fontsize": 8,
 	"axes.labelsize": 10,
+	"axes.formatter.use_mathtext": True,
 	"lines.linewidth": 1.0,
 	"lines.markersize": 5,
-	"text.usetex": False,
-	"pgf.rcfonts": False,
+	"text.usetex": True,
+	"pgf.rcfonts": True,
 	"pgf.texsystem": 'lualatex',
 	"pgf.preamble": [
 		r"\usepackage{fontspec}",
