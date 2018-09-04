@@ -131,3 +131,12 @@ session.Spectrum(name="Viridis", colors=colors_viridis)
 session.Spectrum(name="Reversed Viridis", colors=colors_viridis_reversed)
 ${0}
 endsnippet
+
+
+# define the viridis color map in abaqus
+snippet abqvir "Insert Viridis colormap to Abaqus" b
+# Define orientation of the material
+${1:part}.MaterialOrientation(region=${2:set}, orientationType=GLOBAL,
+								axis=AXIS_1, stackDirection=STACK_3)
+${0}
+endsnippet
