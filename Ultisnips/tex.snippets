@@ -7,16 +7,39 @@ endsnippet
 
 snippet subfig "Include subfigure env"
 \begin{subfigure}[${1:b}]{${2:1}\textsize}
-  \includegraphics[]{}
-  \caption{${3}}%
-  \label{fig:${4}}
+	\includegraphics[]{}
+	\caption{${3}}%
+	\label{fig:${4}}
 \end{subfigure}${0}
 endsnippet
 
 snippet notes "Include notes in beamer frame" b
 \note{%
-  \begin{itemize}
-    \item ${0}
-  \end{itemize}
+\begin{itemize}
+	\item ${0}
+\end{itemize}
 }
+endsnippet
+
+snippet tikz_3d_canvas "Scope to draw in a specific 3D plane" i
+\begin{scope}[canvas is ${1:xy} plane at `!p
+if t[1] == 'zy':
+	snip.rv = 'x'
+elif t[1] == 'xy':
+	snip.rv = 'z'
+elif t[1] == 'xz':
+	snip.rv = 'y'
+else:
+	snip.rv = ''
+`=${2:0pt}]
+	$0
+\end{scope}
+endsnippet
+
+snippet SI "Typset number with unit (siunitx)" i
+\SI{$1}{${2:unit}}$0
+endsnippet
+
+snippet SI "Typset range with unit (siunitx)" i
+\SIrange{${1:start}}{${2:end}}{${3:unit}}$0
 endsnippet
