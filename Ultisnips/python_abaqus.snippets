@@ -78,6 +78,14 @@ set_faces = ${6:part}.Set(faces=$6.faces[:], name='set $6')
 $6.SectionAssignment(region=set_faces, sectionName='$3', thicknessAssignment=FROM_SECTION)
 endsnippet
 
+# Material orientation
+snippet abqorient "Material orientation" b
+# Define orientation of the material
+${1:part}.MaterialOrientation(region=${2:set}, orientationType=GLOBAL,
+								axis=AXIS_1, stackDirection=STACK_3)
+${0}
+endsnippet
+
 # define the viridis color map in abaqus
 snippet abqvir "Insert Viridis colormap to Abaqus" b
 # create viridis spectrum (we all love this! <3 )
@@ -132,11 +140,3 @@ session.Spectrum(name="Reversed Viridis", colors=colors_viridis_reversed)
 ${0}
 endsnippet
 
-
-# define the viridis color map in abaqus
-snippet abqvir "Insert Viridis colormap to Abaqus" b
-# Define orientation of the material
-${1:part}.MaterialOrientation(region=${2:set}, orientationType=GLOBAL,
-								axis=AXIS_1, stackDirection=STACK_3)
-${0}
-endsnippet
