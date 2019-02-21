@@ -62,11 +62,19 @@ part = ${1:model}.Part(name='${2:name}', dimensionality=TWO_D_PLANAR, type=DEFOR
 endsnippet
 
 # Define elastic material (2D)
-snippet abqmat "Create an Abaqus elastic material" b
-props = (${1:Ex}, ${2:Ey}, ${3:nu}, ${4:Gxy})
+snippet abqmat2d "Create an Abaqus elastic material" b
+${1:props} = (${2:Ex}, ${3:Ey}, ${4:nu}, ${5:Gxy})
 
-${5:material} = ${6:model}.Material(name='${7:name}')
-$5.Elastic(table=(${8:props}, ), type=LAMINA)
+${6:material} = ${7:model}.Material(name='${8:name}')
+$6.Elastic(table=($1, ), type=LAMINA)
+endsnippet
+
+# Define elastic material (3D)
+snippet abqmat3d "Create an Abaqus 3D elastic material" b
+${1:props} = (${2:E1}, ${3:E2}, ${4:E3}, ${5:nu_12}, ${6:nu_13}, ${7:nu_23}, ${8:G12}, ${9:G13}, ${10:G23} )
+
+${11:material} = ${12:model}.Material(name='${13:name}')
+$11.Elastic(table=($1, ), type=LAMINA)
 endsnippet
 
 # Create section and assign to part
