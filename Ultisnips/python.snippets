@@ -112,3 +112,15 @@ rc_params_mpa_presentation = {
 mpl.rcParams.update(rc_params_mpa_presentation)
 # Optimal figure size: (3.4, 2.4)
 endsnippet
+
+# Figure
+snippet fig "Matplotlib figure" b
+${1:fig} = plt.figure(${2:figsize=(${3:2.8, 2.0})})
+${4:ax} = $1.add_subplot(${5:111})
+$0
+endsnippet
+
+# Add extra axis
+snippet ax "New axis in figure" b
+${1:ax} = ${2:fig}.add_subplot(${3:122}${4:, sharey=${5:ax}})
+endsnippet
