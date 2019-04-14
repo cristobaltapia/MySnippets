@@ -133,6 +133,12 @@ snip.rv = eval('latex(' + match.group(1).replace('\\', '') \
 `
 endsnippet
 
+# Insert text in equations
+context "math()"
+snippet tt "Text" iA
+\\text{$1}$0
+endsnippet
+
 # priority 100
 # context "math()"
 # snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
