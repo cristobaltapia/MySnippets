@@ -116,6 +116,39 @@ mpl.rcParams.update(rc_params_mpa_presentation)
 # Optimal figure size: (3.4, 2.4)
 endsnippet
 
+# rc Params for my thesis
+snippet rcparams_thesis "rcParams for my thesis" b
+# Add the following befor importing pyplot:
+# import matplotlib as mpl
+# mpl.use('pgf')
+
+rc_params_gruyter = {
+	"font.size": 8,
+	"legend.fontsize": 8,
+	"axes.spines.right": False,
+	"axes.spines.top": False,
+	"axes.labelsize": 8,
+	"lines.linewidth": 1.0,
+	"lines.markersize": 5,
+	"text.usetex": True,
+	"pgf.rcfonts": False,
+	"pgf.texsystem": "lualatex",
+	"pgf.preamble": [
+		r"\usepackage{fontspec}",
+		r"\PassOptionsToPackage{no-math}{fontspec}",
+		r"\usepackage{amsmath}",
+		r"\usepackage{siunitx}",
+		r"\usepackage{unicode-math}",
+		r"\setmainfont{XCharter}",
+		r"\setsansfont{XCharter}",
+		r"\setmathfont{Latin Modern Math}",
+	],
+}
+mpl.rcParams.update(rc_params_gruyter)
+# Optimal figure size: (2.8, 2.0)
+endsnippet
+
+
 # Figure
 snippet fig "Matplotlib figure" b
 ${1:fig} = plt.figure(${2:figsize=(${3:2.8, 2.0})})
