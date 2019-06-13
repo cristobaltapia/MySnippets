@@ -122,7 +122,8 @@ snippet rcparams_thesis "rcParams for my thesis" b
 # import matplotlib as mpl
 # mpl.use('pgf')
 
-rc_params_gruyter = {
+rc_params_thesis = {
+	"figure.figsize": (2.8, 2.0),
 	"font.size": 8,
 	"legend.fontsize": 8,
 	"axes.spines.right": False,
@@ -144,7 +145,7 @@ rc_params_gruyter = {
 		r"\setmathfont{Latin Modern Math}",
 	],
 }
-mpl.rcParams.update(rc_params_gruyter)
+mpl.rcParams.update(rc_params_thesis)
 # Optimal figure size: (2.8, 2.0)
 endsnippet
 
