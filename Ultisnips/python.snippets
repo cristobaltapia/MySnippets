@@ -150,9 +150,28 @@ mpl.rcParams.update(rc_params_thesis)
 endsnippet
 
 
-# Figure
-snippet fig "Matplotlib figure" b
-${1:fig} = plt.figure(${2:figsize=(${3:2.8, 2.0})})
+# Figure (Horizontal)
+snippet fig "Matplotlib horizontal figure" b
+${1:fig} = plt.figure(${2:figsize=(${3:2.8}, `!p
+from math import sqrt
+try:
+	snip.rv = round(float(t[3]) / sqrt(2), 1)
+except:
+	snip.rv = t[3]
+`)})
+${4:ax} = $1.add_subplot(${5:111})
+$0
+endsnippet
+
+# Figure (Horizontal)
+snippet figv "Matplotlib vertical figure" b
+${1:fig} = plt.figure(${2:figsize=(${3:2.8}, `!p
+from math import sqrt
+try:
+	snip.rv = round(float(t[3]) * sqrt(2), 1)
+except:
+	snip.rv = t[3]
+`)})
 ${4:ax} = $1.add_subplot(${5:111})
 $0
 endsnippet
