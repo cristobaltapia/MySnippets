@@ -190,3 +190,15 @@ endsnippet
 snippet bbox "Add bbox properties" i
 bbox={"boxstyle": "${1:round,pad=0.2}", "fc":"${2:white}", "ec": "${3:k}"}
 endsnippet
+
+# Table
+snippet table "Add table" b
+table = plt.table(
+	cellText=$1,
+	rowLabels=$2,
+	rowColours=$3,
+	colLabels=$4,
+	loc='bottom')
+# Adjust layout to make room for the table:
+plt.subplots_adjust(left=0.2, bottom=0.2)
+endsnippet
