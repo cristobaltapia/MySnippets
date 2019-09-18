@@ -2,7 +2,20 @@ snippet template_article "Template for articles" b
 ---
 #bibliography: bib_file.bib
 #csl: apa.csl
-#author: Cristóbal Tapia Camú
+#author: ${1:author name}
 ---
 $0
+endsnippet
+
+# Snippets for equations
+snippet __ "Subscript" iA
+_\{$1}$0
+endsnippet
+
+snippet ^^ "Superscript" iA
+^\{$1}$0
+endsnippet
+
+snippet $$ "Inline equation" iA
+\$$1\$$0
 endsnippet
