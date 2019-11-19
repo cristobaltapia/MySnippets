@@ -1,0 +1,17 @@
+snippet venv "Make python virtuelenv rules" b
+venv: venv-install
+
+venv-install: requirements.txt
+	virtualenv --python=${HOME}/.pyenv/versions/3.6.5/bin/python3 venv
+	. venv/bin/activate ;\
+	pip install -Ur requirements.txt
+	touch venv/bin/activate
+
+venv-update: requirements.txt
+	. venv/bin/activate ;\
+	pip install -r requirements.txt
+
+clean:
+	rm -rf venv
+	find -iname "*.pyc" -delete
+endsnippet
