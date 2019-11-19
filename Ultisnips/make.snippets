@@ -1,7 +1,7 @@
 snippet venv "Make python virtuelenv rules" b
-venv: venv-install
+venv: venv/bin/activate
 
-venv-install: requirements.txt
+venv/bin/activate: requirements.txt
 	virtualenv --python=${HOME}/.pyenv/versions/3.6.5/bin/python3 venv
 	. venv/bin/activate ;\
 	pip install -Ur requirements.txt
