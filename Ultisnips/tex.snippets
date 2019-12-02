@@ -28,15 +28,15 @@ endglobal
 
 # Include standalone
 snippet standalone "Inlcude a standalone image" b
-\includestandalone[mode=tex]{${1:file}}${0}
+\\includestandalone[mode=tex]\{${1:file}}${0}
 endsnippet
 
 snippet subfig "Include subfigure env"
-\begin{subfigure}[${1:b}]{${2:1}\textsize}
-	\includegraphics[]{}
-	\caption{${3}}%
-	\label{fig:${4}}
-\end{subfigure}${0}
+\\begin{subfigure}[${1:b}]\{${2:1}\\textsize}
+	\\includegraphics[]\{}
+	\\caption\{${3}}%
+	\\label\{fig:${4}}
+\\end\{subfigure}${0}
 endsnippet
 
 snippet notes "Include notes in beamer frame" b
@@ -48,7 +48,7 @@ snippet notes "Include notes in beamer frame" b
 endsnippet
 
 snippet tikz_3d_canvas "Scope to draw in a specific 3D plane" i
-\begin{scope}[canvas is ${1:xy} plane at `!p
+\\begin\{scope}[canvas is ${1:xy} plane at `!p
 if t[1] == 'zy':
 	snip.rv = 'x'
 elif t[1] == 'xy':
@@ -59,24 +59,24 @@ else:
 	snip.rv = ''
 `=${2:0pt}]
 	$0
-\end{scope}
+\\end\{scope}
 endsnippet
 
 snippet SI "Typset number with unit (siunitx)" i
-\SI{$1}{${2:unit}}$0
+\\SI\{$1}\{${2:unit}}$0
 endsnippet
 
 snippet SIrange "Typset range with unit (siunitx)" i
-\SIrange{${1:start}}{${2:end}}{${3:unit}}$0
+\\SIrange\{${1:start}}\{${2:end}}\{${3:unit}}$0
 endsnippet
 
 # Snippets for equations
 snippet __ "Subscript" iA
-_{$1}$0
+_\{$1} $0
 endsnippet
 
 snippet ^^ "Superscript" iA
-^{$1}$0
+^\{$1} $0
 endsnippet
 
 snippet $$ "Inline equation" iA
@@ -86,16 +86,16 @@ endsnippet
 # Fractions
 context "math()"
 snippet // "Fraction" iA
-\\frac{$1}{$2}$0
+\\frac\{$1}\{$2}$0
 endsnippet
 
 snippet / "Fraction" i
-\\frac{${VISUAL}}{$1}$0
+\\frac\{${VISUAL}}\{$1}$0
 endsnippet
 
 context "math()"
 snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
-\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+\\frac\{`!p snip.rv = match.group(1)`}\{$1}$0
 endsnippet
 
 priority 1000
@@ -110,7 +110,7 @@ while True:
 	if stripped[i] == '(': depth -= 1
 	if depth == 0: break;
 	i-=1
-snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
+snip.rv = stripped[0:i] + "\\frac\{" + stripped[i+1:-1] + "}"
 `{$1}$0
 endsnippet
 
@@ -136,7 +136,7 @@ endsnippet
 # Insert text in equations
 context "math()"
 snippet tt "Text" iA
-\\text{$1}$0
+\\text\{$1}$0
 endsnippet
 
 # foreach loop
@@ -155,14 +155,22 @@ snippet tikzbrace "Make curly brace for annotations" b
 \\draw[decorate,decoration=\{brace,amplitude=${1:10pt},raise=${2:4pt}${3:,mirror}}] $0
 endsnippet
 
-# priority 100
-# context "math()"
-# snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
-# \\`!p snip.rv = match.group(1)`
-# endsnippet
-#
-# priority 200
-# context "math()"
-# snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|pi|zeta|int)' "ln" rwA
-# \\`!p snip.rv = match.group(1)`
-# endsnippet
+snippet ref "Add reference" w
+\\ref\{$1}$0
+endsnippet
+
+snippet eqref "Add reference to equation" w
+\\eqref\{eq:$1}$0
+endsnippet
+
+priority 100
+context "math()"
+snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
+\\`!p snip.rv = match.group(1)`
+endsnippet
+
+priority 200
+context "math()"
+snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|pi|zeta|int)' "ln" rwA
+\\`!p snip.rv = match.group(1)`
+endsnippet
