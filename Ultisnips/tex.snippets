@@ -47,6 +47,13 @@ snippet notes "Include notes in beamer frame" b
 }
 endsnippet
 
+snippet enumi* "Inline enum list with roman labels" i
+\begin{enumerate*}[label=(\roman*)]
+	\item $1
+\end{enumerate*}
+$0
+endsnippet
+
 snippet tikz_3d_canvas "Scope to draw in a specific 3D plane" i
 \\begin\{scope}[canvas is ${1:xy} plane at `!p
 if t[1] == 'zy':
@@ -71,16 +78,18 @@ snippet SIrange "Typset range with unit (siunitx)" i
 endsnippet
 
 # Snippets for equations
+context "math()"
 snippet __ "Subscript" iA
-_\{$1} $0
+_\{${1}}$0
 endsnippet
 
+context "math()"
 snippet ^^ "Superscript" iA
-^\{$1} $0
+^\{${1}}$0
 endsnippet
 
 snippet $$ "Inline equation" iA
-\\($1\\)$0
+\\($1\\) $0
 endsnippet
 
 # Fractions
@@ -136,7 +145,7 @@ endsnippet
 # Insert text in equations
 context "math()"
 snippet tt "Text" iA
-\\text\{$1}$0
+\\text\{${1}}$0
 endsnippet
 
 # foreach loop
