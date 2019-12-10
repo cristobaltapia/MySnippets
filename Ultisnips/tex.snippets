@@ -183,3 +183,20 @@ context "math()"
 snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|pi|zeta|int)' "ln" rwA
 \\`!p snip.rv = match.group(1)`
 endsnippet
+
+# Latex directives
+snippet directive_programm "Latex directive for the programm" b
+% !TeX TS-program = ${1:xelatex,pdflatex,lualatex}
+endsnippet
+
+snippet directive_root "Latex directive for the root file" b
+% !TeX root = ${1:main-file}
+endsnippet
+
+snippet directive_spellcheck "Latex directive for spellcheck" b
+% !TeX spellcheck = ${1:de_DE}
+endsnippet
+
+snippet directive_encoding "Latex directive for the encoding" b
+% !TeX encoding = ${1:UTF-8}
+endsnippet
