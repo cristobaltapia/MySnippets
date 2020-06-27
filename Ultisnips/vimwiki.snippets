@@ -1,0 +1,29 @@
+# Snippets for VimWiki
+
+snippet title "Title of the file"
+	= $1 =
+	$0
+endsnippet
+
+snippet sec "First level section"
+	== ${1:section} ==
+	$0
+endsnippet
+
+snippet sub "Second level section"
+	== ${1:subsection} ==
+	$0
+endsnippet
+
+snippet eq "Equation environment"
+	{{$
+		$1
+	}}$
+	$0
+endsnippet
+
+snippet task "Create a task list"
+	* [ ] ${1:Task description}
+endsnippet
+
+
