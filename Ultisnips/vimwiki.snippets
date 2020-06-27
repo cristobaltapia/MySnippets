@@ -15,6 +15,10 @@ snippet sub "Second level section" b
 $0
 endsnippet
 
+snippet $$ "In-line equation" iA
+\$$1\$ $0
+endsnippet
+
 snippet eq "Block equation environment"
 \{\{$
 	$1
@@ -33,4 +37,14 @@ snippet task "Create a task list"
 * [ ] ${1:Task description}
 endsnippet
 
-
+snippet cite "Link with citation style"
+[[${1:name_year}|`!p
+import re
+try:
+	name = re.findall(r'([A-Za-z]*)', t[1])
+	year = re.findall(r'([0-9]*$)', t[1])
+	res = f'{name[0]} ({year[0]})'
+	snip.rv = res
+except:
+	snip.rv = ''`]]
+endsnippet
