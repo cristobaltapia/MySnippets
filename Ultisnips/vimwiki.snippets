@@ -1,10 +1,17 @@
 # Snippets for VimWiki
 
 global !p
+import re
+import ntpath
 from pubs.config import load_conf
 from pubs.repo import Repository
 
 def get_citation(citekey, config):
+	ti, au, ye = _get_bib_info(citekey, config)
+	entry = f"*{au}* ({ye}), _{ti}_"
+	return entry
+
+def _get_bib_info(citekey, config):
 	conf = load_conf(config)
 	repo = Repository(conf)
 	paper = repo.pull_paper(citekey)
@@ -23,9 +30,26 @@ def get_citation(citekey, config):
 	title = bibdata["title"]
 	year = bibdata["year"]
 
-	entry = f"*{au}* ({year}), _{title}_"
+	return title, au, year
 
-	return entry
+def path_leaf(path):
+    head, tail = ntpath.split(path)
+    return tail or ntpath.basename(head)
+
+def print_bib_head_info():
+	bufvim = vim.current.buffer
+	name = bufvim.name
+	buf = snip.buffer
+	cite = path_leaf(name)
+	key = re.findall(r"^.*(?=\.)", cite)[0]
+	conf_path = vim.vars["vimwiki_pubs_config"]
+	# Get bib info
+	try:
+		ti, au, ye = _get_bib_info(key, conf_path)
+		buf = snip.buffer
+		snip.rv = f"= {ti} = \n {au}\n {ye}\n\n== Notes ==\n"
+	except:
+		print(f"Citekey {key} does not exist!")
 
 def insert_method_call(name):
 	cw = vim.current.window
@@ -50,7 +74,7 @@ def insert_method_call(name):
 endglobal
 
 
-snippet title "Title of the file" b
+snippet head "Title of the file" b
 = $1 =
 $0
 endsnippet
@@ -98,4 +122,9 @@ try:
 	snip.rv = res
 except:
 	snip.rv = ''`]]$0
+endsnippet
+
+snippet headbib "Create the head for a note on a paper in the pubs library" b
+`!p print_bib_head_info()`
+$0
 endsnippet
