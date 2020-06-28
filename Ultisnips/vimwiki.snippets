@@ -1,5 +1,55 @@
 # Snippets for VimWiki
 
+global !p
+from pubs.config import load_conf
+from pubs.repo import Repository
+
+def get_citation(citekey, config):
+	conf = load_conf(config)
+	repo = Repository(conf)
+	paper = repo.pull_paper(citekey)
+	bibdata = paper.bibdata
+	if "author" in bibdata:
+		au = "; ".join(bibdata["author"])
+	elif "editor" in bibdata:
+		au = "; ".join(bibdata["editor"])
+	elif "key" in bibdata:
+		au = bibdata["key"]
+	elif "organization" in bibdata:
+		au = bibdata["organization"]
+	else:
+		au = "N.N."
+
+	title = bibdata["title"]
+	year = bibdata["year"]
+
+	entry = f"*{au}* ({year}), _{title}_"
+
+	return entry
+
+def insert_method_call(name):
+	cw = vim.current.window
+	buf = snip.buffer
+	pos = cw.cursor
+	# pusb_conf = vim.vars("vimwiki-pubs-config")
+	# Search for "References" section
+	need_ref_sec = True
+	for line in buf[0:-1]:
+		if "== References ==" == line:
+			need_ref_sec = False
+	if need_ref_sec:
+		buf.append(["== References ==", ""])
+
+	try:
+		conf_path = vim.vars["vimwiki_pubs_config"]
+		buf.append("- " + get_citation(name, conf_path))
+	except:
+		buf.append("- " + name)
+
+	cw.cursor = pos
+endglobal
+
+
 snippet title "Title of the file" b
 = $1 =
 $0
@@ -37,14 +87,15 @@ snippet task "Create a task list"
 * [ ] ${1:Task description}
 endsnippet
 
+post_jump "if snip.tabstop == 0: insert_method_call(snip.tabstops[1].current_text)"
 snippet cite "Link with citation style"
 [[${1:name_year}|`!p
 import re
 try:
 	name = re.findall(r'([A-Za-z]*)', t[1])
-	year = re.findall(r'([0-9]*$)', t[1])
+	year = re.findall(r'([0-9]*[abcdef]?$)', t[1])
 	res = f'{name[0]} ({year[0]})'
 	snip.rv = res
 except:
-	snip.rv = ''`]]
+	snip.rv = ''`]]$0
 endsnippet
