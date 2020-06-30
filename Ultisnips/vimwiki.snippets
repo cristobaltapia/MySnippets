@@ -51,11 +51,20 @@ def print_bib_head_info():
 	except:
 		print(f"Citekey {key} does not exist!")
 
+def insert_bib_info_list(citekey):
+	conf_path = vim.vars["vimwiki_pubs_config"]
+	# Get bib info
+	try:
+		ti, _, _ = _get_bib_info(citekey, conf_path)
+		buf = snip.buffer
+		snip.expand_anon(f" : {ti}")
+	except:
+		print(f"Citekey {key} does not exist!")
+
 def insert_method_call(name):
 	cw = vim.current.window
 	buf = snip.buffer
 	pos = cw.cursor
-	# pusb_conf = vim.vars("vimwiki-pubs-config")
 	# Search for "References" section
 	need_ref_sec = True
 	for line in buf[0:-1]:
@@ -127,4 +136,17 @@ endsnippet
 snippet headbib "Create the head for a note on a paper in the pubs library" b
 `!p print_bib_head_info()`
 $0
+endsnippet
+
+post_jump "if snip.tabstop == 0: insert_bib_info_list(snip.tabstops[1].current_text)"
+snippet citelist "Link with citation style"
+[[${1:name_year}|`!p
+import re
+try:
+	name = re.findall(r'([A-Za-z]*)', t[1])
+	year = re.findall(r'([0-9]*[abcdef]?$)', t[1])
+	res = f'{name[0]} ({year[0]})'
+	snip.rv = res
+except:
+	snip.rv = ''`]]$0
 endsnippet
