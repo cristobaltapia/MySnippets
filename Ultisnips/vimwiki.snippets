@@ -86,23 +86,34 @@ def insert_bib_info_list(citekey):
 	except:
 		print(f"Citekey {key} does not exist!")
 
-def insert_method_call(name):
+def add_reference(name):
 	cw = vim.current.window
 	buf = snip.buffer
 	pos = cw.cursor
 	# Search for "References" section
 	need_ref_sec = True
-	for line in buf[0:-1]:
+	line_ref_section = -1
+
+	for line_num, line in enumerate(buf[0:-1]):
 		if "== References ==" == line:
 			need_ref_sec = False
+			line_ref_section = line_num
+			break
+
 	if need_ref_sec:
 		buf.append(["== References ==", ""])
+		existing_refs = []
+	else:
+		existing_refs = buf[line_ref_section:-1]
 
 	try:
 		conf_path = vim.vars["vimwiki_pubs_config"]
-		buf.append("- " + get_citation(name, conf_path))
+		reference = get_citation(name, conf_path)
+		if ("- " + reference) not in existing_refs:
+			buf.append("- " + reference)
 	except:
-		buf.append("- " + name)
+		if name not in existing_refs:
+			buf.append("- " + name)
 
 	cw.cursor = pos
 endglobal
@@ -159,7 +170,7 @@ endsnippet
 # Add citation with link to respective note and an entry in the 'Reference'
 # section at the end of the file
 context "snip.context = {'name': None}"
-post_jump "if snip.tabstop == 0: insert_method_call(snip.context['name'])"
+post_jump "if snip.tabstop == 0: add_reference(snip.context['name'])"
 snippet "@([A-Za-z_0-9]*)" "Link with citation style" rW
 [[`!p
 snip.rv = match.group(1)`|`!p
