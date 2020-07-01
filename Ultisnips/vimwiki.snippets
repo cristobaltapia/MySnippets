@@ -6,6 +6,31 @@ import ntpath
 from pubs.config import load_conf
 from pubs.repo import Repository
 
+# Expand math snippets only within math environments
+# (source: https://castel.dev/post/lecture-notes-1/ )
+texMathZones = ['texMathZone'+x for x in ['A', 'AS', 'B', 'BS', 'C',
+'CS', 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS',
+'J', 'JS', 'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z']] + ["VimwikiMath", "VimwikiEqIn"]
+
+texIgnoreMathZones = ['texMathText']
+
+texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
+texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
+
+ignore = texIgnoreMathZoneIds[0]
+
+def math():
+	synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
+	try:
+		first = next(
+			i for i in reversed(synstackids)
+			if i in texIgnoreMathZoneIds or i in texMathZoneIds
+		)
+		return first != ignore
+	except StopIteration:
+		return False
+
+# Utilities for citation management.
 def get_citation(citekey, config):
 	ti, au, ye = _get_bib_info(citekey, config)
 	entry = f"*{au}* ({ye}), _{ti}_"
@@ -114,6 +139,17 @@ snippet al "Aligned equation environment"
 	$1
 }}$
 $0
+endsnippet
+
+# Snippets for equations
+context "math()"
+snippet __ "Subscript" iA
+_\{${1}}$0
+endsnippet
+
+context "math()"
+snippet ^^ "Superscript" iA
+^\{${1}}$0
 endsnippet
 
 snippet task "Create a task list"
