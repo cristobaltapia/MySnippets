@@ -156,33 +156,39 @@ snippet task "Create a task list"
 * [ ] ${1:Task description}
 endsnippet
 
+# Add citation with link to respective note and an entry in the 'Reference'
+# section at the end of the file
 post_jump "if snip.tabstop == 0: insert_method_call(snip.tabstops[1].current_text)"
-snippet cite "Link with citation style"
-[[${1:name_year}|`!p
+snippet "@([A-Za-z_0-9]*)" "Link with citation style" rW
+[[${1:`!p
+snip.rv = match.group(1)`}|`!p
 import re
 try:
-	name = re.findall(r'([A-Za-z]*)', t[1])
-	year = re.findall(r'([0-9]*[abcdef]?$)', t[1])
+	name = re.findall(r'([A-Za-z]*)', match.group(1))
+	year = re.findall(r'([0-9]*[abcdef]?$)', match.group(1))
 	res = f'{name[0]} ({year[0]})'
 	snip.rv = res
 except:
 	snip.rv = ''`]]$0
+endsnippet
+
+# Add citation with link to respective note, followed by the title of the reference.
+# Useful to add to a list of reference as an index.
+snippet "@-([A-Za-z_0-9]*)" "List citation with title" rW
+`!p
+import re
+try:
+	conf_path = vim.vars["vimwiki_pubs_config"]
+	ti, _, _ = _get_bib_info(match.group(1), conf_path)
+	name = re.findall(r'([A-Za-z]*)', match.group(1))
+	year = re.findall(r'([0-9]*[abcdef]?$)', match.group(1))
+	res = f'[[{match.group(1)}|{name[0]} ({year[0]})]] : {ti}'
+except:
+	res = f"{match.group(1)}"
+snip.rv = res`$0
 endsnippet
 
 snippet headbib "Create the head for a note on a paper in the pubs library" b
 `!p print_bib_head_info()`
 $0
-endsnippet
-
-post_jump "if snip.tabstop == 0: insert_bib_info_list(snip.tabstops[1].current_text)"
-snippet citelist "Link with citation style"
-[[${1:name_year}|`!p
-import re
-try:
-	name = re.findall(r'([A-Za-z]*)', t[1])
-	year = re.findall(r'([0-9]*[abcdef]?$)', t[1])
-	res = f'{name[0]} ({year[0]})'
-	snip.rv = res
-except:
-	snip.rv = ''`]]$0
 endsnippet
