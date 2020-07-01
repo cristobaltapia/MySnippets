@@ -158,10 +158,11 @@ endsnippet
 
 # Add citation with link to respective note and an entry in the 'Reference'
 # section at the end of the file
-post_jump "if snip.tabstop == 0: insert_method_call(snip.tabstops[1].current_text)"
+context "snip.context = {'name': None}"
+post_jump "if snip.tabstop == 0: insert_method_call(snip.context['name'])"
 snippet "@([A-Za-z_0-9]*)" "Link with citation style" rW
-[[${1:`!p
-snip.rv = match.group(1)`}|`!p
+[[`!p
+snip.rv = match.group(1)`|`!p
 import re
 try:
 	name = re.findall(r'([A-Za-z]*)', match.group(1))
@@ -169,7 +170,8 @@ try:
 	res = f'{name[0]} ({year[0]})'
 	snip.rv = res
 except:
-	snip.rv = ''`]]$0
+	snip.rv = ''
+snip.context['name'] = match.group(1)`]] $0
 endsnippet
 
 # Add citation with link to respective note, followed by the title of the reference.
