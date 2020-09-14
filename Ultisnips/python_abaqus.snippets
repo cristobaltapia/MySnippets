@@ -148,3 +148,29 @@ session.Spectrum(name="Reversed Viridis", colors=colors_viridis_reversed)
 ${0}
 endsnippet
 
+snippet abqmesh "Mesh an instance in assembly" b
+${1:region} = (${2:instance}.faces, )
+${3:elemType_${4:1}} = mesh.ElemType(elemCode=${5:CPS4R}, elemLibrary=STANDARD)
+
+${6:assembly}.setElementType(regions=$1, elemTypes=($3, ))
+$6.seedPartInstance(regions=($2, ), size=${7:elem size})
+$6.generateMesh(regions=($2, ))
+$0
+endsnippet
+
+snippet abqstep "Creation of a new step in the model" b
+${1:model}.StaticStep(name='${2:name}', previous='Initial',
+	nlgeom=False, timeIncrementationMethod=AUTOMATIC, initialInc=0.5, maxInc=1.0,
+	maxNumInc=1000)
+$0
+endsnippet
+
+snippet abqjob "Create a Job object" b
+${1:job} = mdb.Job(name="${2:name}", model=${3:model}.name,
+				description='${4:description}',
+				numCpus=${5:cpus}, numDomains=$5)
+
+$1.submit()
+$1.waitForCompletion()
+$0
+endsnippet

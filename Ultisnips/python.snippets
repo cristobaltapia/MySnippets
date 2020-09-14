@@ -25,7 +25,7 @@ rc_params_gruyter = {
 	"text.usetex": True,
 	"pgf.rcfonts": False,
 	"pgf.texsystem": 'lualatex',
-	"pgf.preamble": (r"""\usepackage{fontspec}
+	"pgf.preamble":(r"""\usepackage{fontspec}
 \PassOptionsToPackage{no-math}{fontspec}
 \usepackage{amsmath}
 \usepackage{siunitx}
@@ -37,7 +37,7 @@ rc_params_gruyter = {
 \setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Univers for UniS 65 Bold}
 \setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Univers for UniS 45 Light Oblique}
 \setmathfont[range=\mathbfit/{num,greek,Greek}]{Univers for UniS 65 Bold}
-\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Univers for UniS 55 Roman}""", ),
+\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Univers for UniS 55 Roman}""" ),
 }
 mpl.rcParams.update(rc_params_gruyter)
 # Optimal figure size: (2.8, 2.0)
@@ -67,7 +67,7 @@ rc_params_inter = {
 \setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Calibri}
 \setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Calibri Light Italic}
 \setmathfont[range=\mathbfit/{num,greek,Greek}]{Calibri Italic}
-\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Calibri Light}""", ),
+\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Calibri Light}""" ),
 }
 mpl.rcParams.update(rc_params_inter)
 # Optimal figure size: (3.4, 2.4)
@@ -105,7 +105,7 @@ rc_params_mpa_presentation = {
 \setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Arial Bold}
 \setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Arial Italic}
 \setmathfont[range=\mathbfit/{num,greek,Greek}]{Arial Bold Italic}
-\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Arial}""", ),
+\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Arial}""" ),
 }
 mpl.rcParams.update(rc_params_mpa_presentation)
 # Optimal figure size: (3.4, 2.4)
@@ -136,7 +136,7 @@ rc_params_thesis = {
 \usepackage{unicode-math}
 \setmainfont{XCharter}
 \setsansfont{XCharter}
-\setmathfont{Latin Modern Math}""", )
+\setmathfont{Latin Modern Math}""" )
 
 }
 mpl.rcParams.update(rc_params_thesis)
