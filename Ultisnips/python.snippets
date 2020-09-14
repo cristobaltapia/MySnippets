@@ -25,21 +25,14 @@ rc_params_gruyter = {
 	"text.usetex": True,
 	"pgf.rcfonts": False,
 	"pgf.texsystem": 'lualatex',
-	"pgf.preamble": [
-		r"\usepackage{fontspec}",
-	r"\PassOptionsToPackage{no-math}{fontspec}",
-	r"\usepackage{amsmath}",
-	r"\usepackage{siunitx}",
-	r"\usepackage{unicode-math}",
-	r"\setmainfont{Univers for UniS 55 Roman}",
-	r"\setsansfont{Univers for UniS 55 Roman}",
-	r"\setmathfont{Latin Modern Math}",
-	r"\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Univers for UniS 55 Roman}",
-	r"\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Univers for UniS 65 Bold}",
-	r"\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Univers for UniS 45 Light Oblique}",
-	r"\setmathfont[range=\mathbfit/{num,greek,Greek}]{Univers for UniS 65 Bold}",
-#  r'\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Univers for UniS 55 Roman}',
-	], }
+	"pgf.preamble": (r"""\usepackage{fontspec}
+\PassOptionsToPackage{no-math}{fontspec}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{unicode-math}
+\setmainfont{XCharter}
+\setsansfont{XCharter}
+\setmathfont{Latin Modern Math}""", 	), }
 mpl.rcParams.update(rc_params_gruyter)
 # Optimal figure size: (2.8, 2.0)
 endsnippet
