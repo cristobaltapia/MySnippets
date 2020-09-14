@@ -30,9 +30,15 @@ rc_params_gruyter = {
 \usepackage{amsmath}
 \usepackage{siunitx}
 \usepackage{unicode-math}
-\setmainfont{XCharter}
-\setsansfont{XCharter}
-\setmathfont{Latin Modern Math}""", 	), }
+\setmainfont{Univers for UniS 55 Roman}
+\setsansfont{Univers for UniS 55 Roman}
+\setmathfont{Latin Modern Math}
+\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Univers for UniS 55 Roman}
+\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Univers for UniS 65 Bold}
+\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Univers for UniS 45 Light Oblique}
+\setmathfont[range=\mathbfit/{num,greek,Greek}]{Univers for UniS 65 Bold}
+\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Univers for UniS 55 Roman}""", ),
+}
 mpl.rcParams.update(rc_params_gruyter)
 # Optimal figure size: (2.8, 2.0)
 endsnippet
@@ -49,21 +55,19 @@ rc_params_inter = {
 	"text.usetex": True,
 	"pgf.rcfonts": True,
 	"pgf.texsystem": 'lualatex',
-	"pgf.preamble": [
-		r"\usepackage{fontspec}",
-		r"\PassOptionsToPackage{no-math}{fontspec}",
-		r"\usepackage{amsmath}",
-		r"\usepackage{siunitx}",
-		r"\usepackage{unicode-math}",
-		r"\setmainfont{Calibri, Light}",
-		r"\setsansfont{Calibri, Light}",
-		r"\setmathfont{Latin Modern Math}",
-		r"\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Calibri Light}",
-		r"\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Calibri}",
-		r"\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Calibri Light Italic}",
-		r"\setmathfont[range=\mathbfit/{num,greek,Greek}]{Calibri Italic}",
-		r'\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Calibri Light}',
-	],
+	"pgf.preamble": (r"""\usepackage{fontspec}",
+\PassOptionsToPackage{no-math}{fontspec}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{unicode-math}
+\setmainfont{Calibri, Light}
+\setsansfont{Calibri, Light}
+\setmathfont{Latin Modern Math}
+\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Calibri Light}
+\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Calibri}
+\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Calibri Light Italic}
+\setmathfont[range=\mathbfit/{num,greek,Greek}]{Calibri Italic}
+\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Calibri Light}""", ),
 }
 mpl.rcParams.update(rc_params_inter)
 # Optimal figure size: (3.4, 2.4)
@@ -89,21 +93,19 @@ rc_params_mpa_presentation = {
 	"text.usetex": True,
 	"pgf.rcfonts": True,
 	"pgf.texsystem": 'lualatex',
-	"pgf.preamble": [
-		r"\usepackage{fontspec}",
-		r"\PassOptionsToPackage{no-math}{fontspec}",
-		r"\usepackage{amsmath}",
-		r"\usepackage{siunitx}",
-		r"\usepackage{unicode-math}",
-		r"\setmainfont{Arial}",
-		r"\setsansfont{Arial}",
-		r"\setmathfont{Latin Modern Math}",
-		r"\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Arial}",
-		r"\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Arial Bold}",
-		r"\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Arial Italic}",
-		r"\setmathfont[range=\mathbfit/{num,greek,Greek}]{Arial Bold Italic}",
-		r'\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Arial}',
-	],
+	"pgf.preamble": (r"""\usepackage{fontspec}
+\PassOptionsToPackage{no-math}{fontspec}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{unicode-math}
+\setmainfont{Arial}
+\setsansfont{Arial}
+\setmathfont{Latin Modern Math}
+\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Arial}
+\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Arial Bold}
+\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Arial Italic}
+\setmathfont[range=\mathbfit/{num,greek,Greek}]{Arial Bold Italic}
+\setmathfont[range={"0002B,"000B1,"000D7,"02044,"02212,"02215,"0002F,"0002E}]{Arial}""", ),
 }
 mpl.rcParams.update(rc_params_mpa_presentation)
 # Optimal figure size: (3.4, 2.4)
@@ -127,16 +129,15 @@ rc_params_thesis = {
 	"text.usetex": True,
 	"pgf.rcfonts": False,
 	"pgf.texsystem": "lualatex",
-	"pgf.preamble": [
-		r"\usepackage{fontspec}",
-		r"\PassOptionsToPackage{no-math}{fontspec}",
-		r"\usepackage{amsmath}",
-		r"\usepackage{siunitx}",
-		r"\usepackage{unicode-math}",
-		r"\setmainfont{XCharter}",
-		r"\setsansfont{XCharter}",
-		r"\setmathfont{Latin Modern Math}",
-	],
+	"pgf.preamble":(r"""\usepackage{fontspec}
+\PassOptionsToPackage{no-math}{fontspec}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{unicode-math}
+\setmainfont{XCharter}
+\setsansfont{XCharter}
+\setmathfont{Latin Modern Math}""", )
+
 }
 mpl.rcParams.update(rc_params_thesis)
 # Optimal figure size: (2.8, 2.0)
