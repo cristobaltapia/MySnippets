@@ -75,6 +75,14 @@ snippet SIrange "Typset range with unit (siunitx)" i
 \\SIrange\{${1:start}}\{${2:end}}\{${3:unit}}$0
 endsnippet
 
+snippet __ "Subscript" iA
+\textsubscript{$1}$0
+endsnippet
+
+snippet ^^ "Superscript" iA
+\textsuperscript{$1}$0
+endsnippet
+
 # Snippets for equations
 context "math()"
 snippet __ "Subscript" iA
@@ -100,10 +108,10 @@ snippet / "Fraction" i
 \\frac\{${VISUAL}}\{$1}$0
 endsnippet
 
-context "math()"
-snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
-\\frac\{`!p snip.rv = match.group(1)`}\{$1}$0
-endsnippet
+# context "math()"
+# snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
+# \\frac\{`!p snip.rv = match.group(1)`}\{$1}$0
+# endsnippet
 
 priority 1000
 context "math()"
