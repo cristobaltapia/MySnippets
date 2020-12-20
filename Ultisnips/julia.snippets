@@ -1,0 +1,50 @@
+global !p
+
+def is_line_pre_function(line):
+	next_line_n = line + 1
+	next_line = vim.current.buffer[next_line_n]
+	if re.match("function ", next_line):
+		return next_line
+	else:
+		return False
+
+def get_fun_args(text):
+	m = re.search(r"(?<=\().*(?=\))", text)
+	args = m.group().split(",")
+	return args
+
+def get_fun_signature(text):
+	m = re.search("(?<=function ).*", text)
+	if m:
+		sig = m.group()
+		return sig
+	else:
+		return []
+
+def make_doc_args(args):
+	text = "\n"
+	if len(args) > 0:
+		text += "# Arguments\n"
+		for ai in args:
+			text += f"- `{ai.strip()}`: TODO\n"
+
+	return text
+
+endglobal
+
+context "is_line_pre_function(snip.line)"
+snippet doc "Docstring for function" be
+"""
+`!p
+buf = vim.current.buffer
+line = vim.current.window.row
+sig = get_fun_signature(context)
+snip.rv = f"    {sig}\n"
+`
+${1:Description}
+`!p
+args = get_fun_args(context)
+snip.rv = make_doc_args(args)
+`
+"""
+endsnippet
