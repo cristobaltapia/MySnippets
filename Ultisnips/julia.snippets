@@ -1,12 +1,15 @@
 global !p
 
 def is_line_pre_function(line):
-	next_line_n = line + 1
-	next_line = vim.current.buffer[next_line_n]
-	if re.match("function ", next_line):
-		return next_line
-	else:
-		return False
+	try:
+		next_line_n = line + 1
+		next_line = vim.current.buffer[next_line_n]
+		if re.match("function ", next_line):
+			return next_line
+		else:
+			return False
+	except:
+		pass
 
 def get_fun_args(text):
 	m = re.search(r"(?<=\().*(?=\))", text)
