@@ -72,7 +72,7 @@ def print_bib_head_info():
 		try:
 			ti, au, ye = _get_bib_info(key, conf_i)
 			buf = snip.buffer
-			snip.rv = f"= {ti} = \n {au}\n {ye}\n\n== Notes ==\n"
+			snip.rv = f"= {ti} = \n {au}\n {ye}\n\n## Notes\n"
 		except:
 			continue
 
@@ -96,13 +96,13 @@ def add_reference(name):
 	line_ref_section = -1
 
 	for line_num, line in enumerate(buf[0:-1]):
-		if "== References ==" == line:
+		if "## References" == line:
 			need_ref_sec = False
 			line_ref_section = line_num
 			break
 
 	if need_ref_sec:
-		buf.append(["== References ==", ""])
+		buf.append(["## References", ""])
 		existing_refs = []
 	else:
 		existing_refs = buf[line_ref_section:-1]
@@ -125,22 +125,22 @@ endglobal
 
 
 snippet head "Title of the file" b
-= $1 =
+# $1
 $0
 endsnippet
 
 snippet sec "First level section" b
-== ${1:section} ==
+## ${1:section}
 $0
 endsnippet
 
 snippet sub "Second level section" b
-=== ${1:subsection} ===
+### ${1:subsection}
 $0
 endsnippet
 
-snippet ssub "Thurd level section" b
-==== ${1:subsubsection} ====
+snippet ssub "Third level section" b
+#### ${1:subsubsection}
 $0
 endsnippet
 
@@ -219,3 +219,4 @@ snippet headbib "Create the head for a note on a paper in the pubs library" b
 `!p print_bib_head_info()`
 $0
 endsnippet
+
