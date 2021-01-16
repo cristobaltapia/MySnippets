@@ -72,7 +72,7 @@ def print_bib_head_info():
 		try:
 			ti, au, ye = _get_bib_info(key, conf_i)
 			buf = snip.buffer
-			snip.rv = f"# {ti}\n {au}\n {ye}\n\n## Notes\n"
+			snip.rv = f"# {ti}\n\n{au}\n{ye}\n\n## Notes\n"
 		except:
 			continue
 
