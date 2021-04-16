@@ -143,6 +143,35 @@ mpl.rcParams.update(rc_params_thesis)
 # Optimal figure size: (2.8, 2.0)
 endsnippet
 
+# rc Params for Elsevier Journals
+snippet rcparams_elsevier "rcParams for Elsevier Journals" b
+# Add the following befor importing pyplot:
+# import matplotlib as mpl
+# mpl.use('pgf')
+rc_params_elsevier = {
+	"figure.figsize": (3.5, 2.5),
+	"axes.spines.right": False,
+	"axes.spines.top": False,
+	"font.size": 8,
+	"legend.fontsize": 8,
+	"axes.labelsize": 8,
+	"lines.linewidth": 1.0,
+	"lines.markersize": 5,
+	"text.usetex": True,
+	"pgf.rcfonts": False,
+	"pgf.texsystem": 'lualatex',
+	"pgf.preamble":(r"""\usepackage{fontspec}
+\PassOptionsToPackage{no-math}{fontspec}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{unicode-math}
+\setmathfont{Latin Modern Math}
+""" ),
+}
+mpl.rcParams.update(rc_params_elsevier)
+# Optimal figure size one column: (3.5, 2.5)
+# Optimal figure size two columns: (7.48, 5.3)
+endsnippet
 
 # Figure (Horizontal)
 snippet fig "Matplotlib horizontal figure" b
