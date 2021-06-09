@@ -222,3 +222,15 @@ $1.submit()
 $1.waitForCompletion()
 $0
 endsnippet
+
+snippet abqpath "Create path object in postprocessing" b
+${1:path_1} = session.Path(name='${2:name}', type=${3:POINT_LIST},
+						expression=((${4:x,y,z}), $0))
+endsnippet
+
+snippet abqpathd "Extract data from path" b
+${1:data} = xyPlot.XYDataFromPath(path=${2:path}, name='${3:name}', includeIntersections=True,
+			shape=UNDEFORMED, pathStyle=${4:PATH_POINTS|UNIFORM_SPACING}
+			numIntervals=10, labelType=TRUE_DISTANCE,
+			variable=('S', INTEGRATION_POINT, ('S11', INTEGRATION_POINT)))
+endsnippet
