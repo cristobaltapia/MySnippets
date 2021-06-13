@@ -181,7 +181,7 @@ endsnippet
 # section at the end of the file
 context "snip.context = {'name': None}"
 post_jump "if snip.tabstop == 0: add_reference(snip.context['name'])"
-snippet "@([A-Za-z_0-9]*)" "Link with citation style" rW
+snippet "@([^-]\w+)" "Link with citation style" rW
 [[`!p
 snip.rv = match.group(1)`|`!p
 import re
@@ -197,7 +197,7 @@ endsnippet
 
 # Add citation with link to respective note, followed by the title of the reference.
 # Useful to add to a list of reference as an index.
-snippet "@-([A-Za-z_0-9]*)" "List citation with title" rW
+snippet "@-(\w+)" "List citation with title" rW
 `!p
 import re
 try:
