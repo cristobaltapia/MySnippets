@@ -215,7 +215,8 @@ except:
 snip.rv = res`$0
 endsnippet
 
-snippet headbib "Create the head for a note on a paper in the pubs library" b
+context "snip.line == 0"
+snippet headbib "Create the head for a note on a paper in the pubs library" be
 `!p print_bib_head_info()`
 $0
 endsnippet
