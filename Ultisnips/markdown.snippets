@@ -1,8 +1,50 @@
 # Snippets for equations
+global !p
+
+def is_german_lang():
+	lang = vim.options['spelllang']
+	if re.match('de', lang):
+		return True
+	else:
+		return False
+
+# Pretty yanky detection of math environment
+def is_math_context():
+	row = snip.line
+	col = snip.column
+	buff = snip.buffer
+	pattern = re.compile(r"(?<!\\)\$")
+	if math_from_left(buff[row], col, pattern):
+		if math_from_right(buff[row], col, pattern):
+			return True
+		else:
+			return False
+	else:
+		return False
+
+def math_from_left(line, col, pat):
+	match = pat.findall(line, 0, col)
+	if len(match) % 2 == 0:
+		return False
+	else:
+		return True
+
+def math_from_right(line, col, pat):
+	match = pat.findall(line, col-1, (len(line) - 1))
+	print(match)
+	if len(match) % 2 == 0:
+		return False
+	else:
+		return True
+
+endglobal
+
+context "is_math_context()"
 snippet __ "Subscript" iA
 _\{$1}$0
 endsnippet
 
+context "is_math_context()"
 snippet ^^ "Superscript" iA
 ^\{$1}$0
 endsnippet
@@ -11,6 +53,29 @@ snippet $$ "Inline equation" iA
 \$$1\$$0
 endsnippet
 
+context "is_math_context()"
+snippet tt "Normal text within equation" iA
+\\text\{$1}$0
+endsnippet
+
 snippet img "Add image"
 ![${2:image description}](${1:image path})
+endsnippet
+
+context "is_german_lang()"
+snippet ,, "Add German quoting marks" A
+„${VISUAL}$1“$0
+endsnippet
+
+context "is_german_lang()"
+snippet << "Add German quoting marks" A
+»${VISUAL}$1«$0
+endsnippet
+
+snippet __ "Subscript" iA
+~$1~$0
+endsnippet
+
+snippet ^^ "Superscript" iA
+^$1^$0
 endsnippet
