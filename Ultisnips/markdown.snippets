@@ -63,6 +63,12 @@ endsnippet
 
 snippet img "Add image"
 ![${2:image description}](${1:image path})
+$0
+endsnippet
+
+snippet imgl "Add image with label"
+![${2:image description}](${1:image path}){#fig:${3:label} width=${4:12cm} }
+$0
 endsnippet
 
 context "is_german_lang()"
