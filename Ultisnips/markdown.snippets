@@ -8,29 +8,28 @@ def is_german_lang():
 	else:
 		return False
 
+# Pattern to match single double '$' symbols
+PATTERN = re.compile(r"(?<!\\)\${1,2}")
+
 # Pretty yanky detection of math environment
 def is_math_context():
 	row = snip.line
 	col = snip.column
 	buff = snip.buffer
-	pattern = re.compile(r"(?<!\\)\$")
-	if math_from_left(buff[row], col, pattern):
-		if math_from_right(buff[row], col, pattern):
-			return True
-		else:
-			return False
+	if math_from_left(buff[row], col) and math_from_right(buff[row], col):
+		return True
 	else:
 		return False
 
-def math_from_left(line, col, pat):
-	match = pat.findall(line, 0, col)
+def math_from_left(line, col):
+	match = PATTERN.findall(line, 0, col)
 	if len(match) % 2 == 0:
 		return False
 	else:
 		return True
 
-def math_from_right(line, col, pat):
-	match = pat.findall(line, col-1, (len(line) - 1))
+def math_from_right(line, col):
+	match = PATTERN.findall(line, col-1, (len(line)))
 	print(match)
 	if len(match) % 2 == 0:
 		return False
