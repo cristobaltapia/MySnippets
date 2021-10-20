@@ -169,6 +169,13 @@ snippet tikzpic "Defines a pic for tikz" b
 \\tikzset\{${1:name}/.pic=\{$0}}
 endsnippet
 
+snippet tikzgraph "Include a figure within a node within a \visible command"
+\\begin\{tikzpicture}[scale=1, transform shape]
+	\\visible<${1:1}>\{
+		\\node at (0,0) \{\\includegraphics\{${2:path-to-figure}}};
+	}$0
+\\end\{tikzpicture}
+endsnippet
 
 snippet tikzbrace "Make curly brace for annotations" b
 \\draw[decorate,decoration=\{brace,amplitude=${1:10pt},raise=${2:4pt}${3:,mirror}}] $0

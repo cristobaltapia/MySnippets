@@ -51,3 +51,18 @@ snip.rv = make_doc_args(args)
 `
 """
 endsnippet
+
+snippet rcparams_thesis "rcParams for my thesis" b
+# Add the following befor importing pyplot:
+# import matplotlib as mpl
+# mpl.use('pgf')
+rcParams = PyPlot.PyDict(PyPlot.matplotlib."rcParams")
+rcParams["axes.spines.right"] = false
+rcParams["axes.spines.top"] = false
+rcParams["figure.size"] = 8
+rcParams["font.size"] = 8
+rcParams["legend.fontsize"] = 8
+rcParams["axes.labelsize"] = 8
+rcParams["lines.linewidth"] = 1.0
+rcParams["lines.markersize"] = 5
+endsnippet
