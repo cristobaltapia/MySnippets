@@ -52,9 +52,11 @@ link break/.initial=0pt,
 	\\def\\startanglea\{160}
 	\\def\\endanglea\{260}
 	\\def\\startangleb\{-70}
-	\\def\\endangleb\{80}
-	\\def\\startanglec\{110}
-	\\def\\endanglec\{130}
+	\\def\\endangleb\{-50}
+	\\def\\startanglec\{-20}
+	\\def\\endanglec\{80}
+	\\def\\startangled\{110}
+	\\def\\endangled\{130}
 	\\def\\rx\{0.5*\\linklength}
 	\\def\\ry\{0.5*\\linkwidth}
 	\\pgfmathparse\{\\rx+\\rx*cos(\\startanglea)}\\let\\startx=\\pgfmathresult
@@ -63,14 +65,18 @@ link break/.initial=0pt,
 	\\pgfmathparse\{\\ry*sin(\\startangleb)}\\let\\startyb=\\pgfmathresult
 	\\pgfmathparse\{\\rx+\\rx*cos(\\startanglec)}\\let\\startxc=\\pgfmathresult
 	\\pgfmathparse\{\\ry*sin(\\startanglec)}\\let\\startyc=\\pgfmathresult
+	\\pgfmathparse\{\\rx+\\rx*cos(\\startangled)}\\let\\startxd=\\pgfmathresult
+	\\pgfmathparse\{\\ry*sin(\\startangled)}\\let\\startyd=\\pgfmathresult
 	\\pgfpathmoveto\{\\pgfpoint\{\\startx}\{\\starty}}
 	\\pgfpatharc\{\\startanglea}\{\\endanglea}\{\\rx and \\ry}
 	\\pgfpathlineto\{\\pgfpointadd\{\\pgfpointpolar\{\\endanglea}\{\\rx*1.6 and \\ry*1.6}}\{\\pgfpoint\{1.5*\\rx}\{-\\ry*0.2}}}
 	\\pgfpathmoveto\{\\pgfpoint\{\\startxb}\{\\startyb}}
 	\\pgfpatharc\{\\startangleb}\{\\endangleb}\{\\rx and \\ry}
-	\\pgfpathlineto\{\\pgfpointadd\{\\pgfpointpolar\{\\endangleb}\{\\rx*1.6 and \\ry*1.6}}\{\\pgfpoint\{\\rx-0.5*\\rx}\{\\ry*0.2}}}
 	\\pgfpathmoveto\{\\pgfpoint\{\\startxc}\{\\startyc}}
 	\\pgfpatharc\{\\startanglec}\{\\endanglec}\{\\rx and \\ry}
+	\\pgfpathlineto\{\\pgfpointadd\{\\pgfpointpolar\{\\endanglec}\{\\rx*1.6 and \\ry*1.6}}\{\\pgfpoint\{\\rx-0.5*\\rx}\{\\ry*0.2}}}
+	\\pgfpathmoveto\{\\pgfpoint\{\\startxd}\{\\startyd}}
+	\\pgfpatharc\{\\startangled}\{\\endangled}\{\\rx and \\ry}
 }
 \\state\{midtwo}[width=\{\\pgfkeysvalueof\{/pgf/decoration/link length} - \\pgfkeysvalueof\{/pgf/decoration/link overlap}},switch if input segment less than=\\pgfkeysvalueof\{/pgf/decoration/link length} to final]
 \{
