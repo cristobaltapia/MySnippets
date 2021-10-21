@@ -1,92 +1,112 @@
 extends tex
 
 snippet tikz_chain "TikZ chain decoration" b
-\tikzset{/pgf/decoration/.cd,
+\\tikzset\{/pgf/decoration/.cd,
 	link length/.initial=20pt,
 	link width/.initial=10pt,
 link overlap/.initial=4pt,
 link break/.initial=0pt,
 }
 
-\pgfdeclaredecoration{chain}{initial}{
-\state{initial}[width={\pgfkeysvalueof{/pgf/decoration/link length} - \pgfkeysvalueof{/pgf/decoration/link overlap}},next state=mid]
-{
-	\def\linkwidth{\pgfkeysvalueof{/pgf/decoration/link width}}
-	\def\linklength{\pgfkeysvalueof{/pgf/decoration/link length}}
-	\pgfpathmoveto{\pgfpoint{0pt}{0pt}}
-	\pgfpatharc{-180}{180}{\linklength*0.5 and \linkwidth*0.5}
-	\pgfusepath{draw}
+\\pgfdeclaredecoration\{chain}\{initial}\{
+\\state\{initial}[width=\{\\pgfkeysvalueof\{/pgf/decoration/link length} - \\pgfkeysvalueof\{/pgf/decoration/link overlap}},next state=mid]
+\{
+	\\pgfsetlinewidth\{\\pgflinewidth}
+	\\def\\linkwidth\{\\pgfkeysvalueof\{/pgf/decoration/link width}}
+	\\def\\linklength\{\\pgfkeysvalueof\{/pgf/decoration/link length}}
+	\\def\\startangle\{-20}
+	\\def\\endangle\{310}
+	\\def\\rx\{0.5*\\linklength}
+	\\def\\ry\{0.5*\\linkwidth}
+	\\pgfmathparse\{\\rx+\\rx*cos(\\startangle)}\\let\\startx=\\pgfmathresult
+	\\pgfmathparse\{\\ry*sin(\\startangle)}\\let\\starty=\\pgfmathresult
+	\\pgfpathmoveto\{\\pgfpoint\{\\startx}\{\\starty}}
+	\\pgfpatharc\{\\startangle}\{\\endangle}\{\\linklength*0.5 and \\linkwidth*0.5}
+	\\pgfpathmoveto\{\\pgfpoint\{\\startx}\{\\starty}}
+	\\pgfusepath\{draw}
 }
-\state{mid}[width={\pgfkeysvalueof{/pgf/decoration/link length} - \pgfkeysvalueof{/pgf/decoration/link overlap}},switch if less than=\pgfkeysvalueof{/pgf/decoration/link break} to break]
-{
-	\def\linkwidth{\pgfkeysvalueof{/pgf/decoration/link width}}
-	\def\linklength{\pgfkeysvalueof{/pgf/decoration/link length}}
-	\def\linkoverlap{\pgfkeysvalueof{/pgf/decoration/link overlap}}
-	\def\startangle{-200}
-	\def\endangle{130}
-	\def\rx{0.5*\linklength}
-	\def\ry{0.5*\linkwidth}
-	\pgfmathparse{\rx+\rx*cos(\startangle)}\let\startx=\pgfmathresult
-	\pgfmathparse{\ry*sin(\startangle)}\let\starty=\pgfmathresult
-	\pgfpathmoveto{\pgfpoint{\startx}{\starty}}
-	\pgfpatharc{\startangle}{\endangle}{\rx and \ry}
-	\pgfusepath{draw}
+\\state\{mid}[width=\{\\pgfkeysvalueof\{/pgf/decoration/link length} - \\pgfkeysvalueof\{/pgf/decoration/link overlap}},switch if less than=\\pgfkeysvalueof\{/pgf/decoration/link break} to break,switch if input segment less than=\\pgfkeysvalueof\{/pgf/decoration/link length} to final]
+\{
+	\\def\\linkwidth\{\\pgfkeysvalueof\{/pgf/decoration/link width}}
+	\\def\\linklength\{\\pgfkeysvalueof\{/pgf/decoration/link length}}
+	\\def\\linkoverlap\{\\pgfkeysvalueof\{/pgf/decoration/link overlap}}
+	\\def\\startanglea\{-200}
+	\\def\\endanglea\{-50}
+	\\def\\startangleb\{-20}
+	\\def\\endangleb\{130}
+	\\def\\rx\{0.5*\\linklength}
+	\\def\\ry\{0.5*\\linkwidth}
+	\\pgfmathparse\{\\rx+\\rx*cos(\\startanglea)}\\let\\startxa=\\pgfmathresult
+	\\pgfmathparse\{\\ry*sin(\\startanglea)}\\let\\startya=\\pgfmathresult
+	\\pgfmathparse\{\\rx+\\rx*cos(\\startangleb)}\\let\\startxb=\\pgfmathresult
+	\\pgfmathparse\{\\ry*sin(\\startangleb)}\\let\\startyb=\\pgfmathresult
+	\\pgfpathmoveto\{\\pgfpoint\{\\startxa}\{\\startya}}
+	\\pgfpatharc\{\\startanglea}\{\\endanglea}\{\\rx and \\ry}
+	\\pgfpathmoveto\{\\pgfpoint\{\\startxb}\{\\startyb}}
+	\\pgfpatharc\{\\startangleb}\{\\endangleb}\{\\rx and \\ry}
 }
-\state{break}[width={\pgfkeysvalueof{/pgf/decoration/link length} - \pgfkeysvalueof{/pgf/decoration/link overlap}},next state=midtwo]
-{
-	\def\linkwidth{\pgfkeysvalueof{/pgf/decoration/link width}}
-	\def\linklength{\pgfkeysvalueof{/pgf/decoration/link length}}
-	\def\linkoverlap{\pgfkeysvalueof{/pgf/decoration/link overlap}}
-	\def\startanglea{160}
-	\def\endanglea{260}
-	\def\startangleb{-70}
-	\def\endangleb{80}
-	\def\startanglec{110}
-	\def\endanglec{130}
-	\def\rx{0.5*\linklength}
-	\def\ry{0.5*\linkwidth}
-	\pgfmathparse{\rx+\rx*cos(\startanglea)}\let\startx=\pgfmathresult
-	\pgfmathparse{\ry*sin(\startanglea)}\let\starty=\pgfmathresult
-	\pgfmathparse{\rx+\rx*cos(\startangleb)}\let\startxb=\pgfmathresult
-	\pgfmathparse{\ry*sin(\startangleb)}\let\startyb=\pgfmathresult
-	\pgfmathparse{\rx+\rx*cos(\startanglec)}\let\startxc=\pgfmathresult
-	\pgfmathparse{\ry*sin(\startanglec)}\let\startyc=\pgfmathresult
-	\pgfpathmoveto{\pgfpoint{\startx}{\starty}}
-	\pgfpatharc{\startanglea}{\endanglea}{\rx and \ry}
-	\pgfpathlineto{\pgfpointadd{\pgfpointpolar{\endanglea}{\rx*1.6 and \ry*1.6}}{\pgfpoint{1.5*\rx}{-\ry*0.2}}}
-	\pgfpathmoveto{\pgfpoint{\startxb}{\startyb}}
-	\pgfpatharc{\startangleb}{\endangleb}{\rx and \ry}
-	\pgfpathlineto{\pgfpointadd{\pgfpointpolar{\endangleb}{\rx*1.6 and \ry*1.6}}{\pgfpoint{\rx-0.5*\rx}{\ry*0.2}}}
-	\pgfpathmoveto{\pgfpoint{\startxc}{\startyc}}
-	\pgfpatharc{\startanglec}{\endanglec}{\rx and \ry}
+\\state\{break}[width=\{\\pgfkeysvalueof\{/pgf/decoration/link length} - \\pgfkeysvalueof\{/pgf/decoration/link overlap}},next state=midtwo]
+\{
+	\\def\\linkwidth\{\\pgfkeysvalueof\{/pgf/decoration/link width}}
+	\\def\\linklength\{\\pgfkeysvalueof\{/pgf/decoration/link length}}
+	\\def\\linkoverlap\{\\pgfkeysvalueof\{/pgf/decoration/link overlap}}
+	\\def\\startanglea\{160}
+	\\def\\endanglea\{260}
+	\\def\\startangleb\{-70}
+	\\def\\endangleb\{80}
+	\\def\\startanglec\{110}
+	\\def\\endanglec\{130}
+	\\def\\rx\{0.5*\\linklength}
+	\\def\\ry\{0.5*\\linkwidth}
+	\\pgfmathparse\{\\rx+\\rx*cos(\\startanglea)}\\let\\startx=\\pgfmathresult
+	\\pgfmathparse\{\\ry*sin(\\startanglea)}\\let\\starty=\\pgfmathresult
+	\\pgfmathparse\{\\rx+\\rx*cos(\\startangleb)}\\let\\startxb=\\pgfmathresult
+	\\pgfmathparse\{\\ry*sin(\\startangleb)}\\let\\startyb=\\pgfmathresult
+	\\pgfmathparse\{\\rx+\\rx*cos(\\startanglec)}\\let\\startxc=\\pgfmathresult
+	\\pgfmathparse\{\\ry*sin(\\startanglec)}\\let\\startyc=\\pgfmathresult
+	\\pgfpathmoveto\{\\pgfpoint\{\\startx}\{\\starty}}
+	\\pgfpatharc\{\\startanglea}\{\\endanglea}\{\\rx and \\ry}
+	\\pgfpathlineto\{\\pgfpointadd\{\\pgfpointpolar\{\\endanglea}\{\\rx*1.6 and \\ry*1.6}}\{\\pgfpoint\{1.5*\\rx}\{-\\ry*0.2}}}
+	\\pgfpathmoveto\{\\pgfpoint\{\\startxb}\{\\startyb}}
+	\\pgfpatharc\{\\startangleb}\{\\endangleb}\{\\rx and \\ry}
+	\\pgfpathlineto\{\\pgfpointadd\{\\pgfpointpolar\{\\endangleb}\{\\rx*1.6 and \\ry*1.6}}\{\\pgfpoint\{\\rx-0.5*\\rx}\{\\ry*0.2}}}
+	\\pgfpathmoveto\{\\pgfpoint\{\\startxc}\{\\startyc}}
+	\\pgfpatharc\{\\startanglec}\{\\endanglec}\{\\rx and \\ry}
 }
-\state{midtwo}[width={\pgfkeysvalueof{/pgf/decoration/link length} - \pgfkeysvalueof{/pgf/decoration/link overlap}}]
-{
-	\def\linkwidth{\pgfkeysvalueof{/pgf/decoration/link width}}
-	\def\linklength{\pgfkeysvalueof{/pgf/decoration/link length}}
-	\def\linkoverlap{\pgfkeysvalueof{/pgf/decoration/link overlap}}
-	\def\startangle{-200}
-	\def\rx{0.5*\linklength}
-	\def\ry{0.5*\linkwidth}
-	\pgfmathparse{\rx+\rx*cos(\startangle)}\let\startx=\pgfmathresult
-	\pgfmathparse{\ry*sin(\startangle)}\let\starty=\pgfmathresult
-	\pgfpathmoveto{\pgfpoint{\startx}{\starty}}
-	\pgfpatharc{\startangle}{130}{\rx and \ry}
-	\pgfusepath{draw}
+\\state\{midtwo}[width=\{\\pgfkeysvalueof\{/pgf/decoration/link length} - \\pgfkeysvalueof\{/pgf/decoration/link overlap}},switch if input segment less than=\\pgfkeysvalueof\{/pgf/decoration/link length} to final]
+\{
+	\\def\\linkwidth\{\\pgfkeysvalueof\{/pgf/decoration/link width}}
+	\\def\\linklength\{\\pgfkeysvalueof\{/pgf/decoration/link length}}
+	\\def\\linkoverlap\{\\pgfkeysvalueof\{/pgf/decoration/link overlap}}
+	\\def\\startanglea\{-200}
+	\\def\\endanglea\{-50}
+	\\def\\startangleb\{-20}
+	\\def\\endangleb\{130}
+	\\def\\rx\{0.5*\\linklength}
+	\\def\\ry\{0.5*\\linkwidth}
+	\\pgfmathparse\{\\rx+\\rx*cos(\\startanglea)}\\let\\startxa=\\pgfmathresult
+	\\pgfmathparse\{\\ry*sin(\\startanglea)}\\let\\startya=\\pgfmathresult
+	\\pgfmathparse\{\\rx+\\rx*cos(\\startangleb)}\\let\\startxb=\\pgfmathresult
+	\\pgfmathparse\{\\ry*sin(\\startangleb)}\\let\\startyb=\\pgfmathresult
+	\\pgfpathmoveto\{\\pgfpoint\{\\startxa}\{\\startya}}
+	\\pgfpatharc\{\\startanglea}\{\\endanglea}\{\\rx and \\ry}
+	\\pgfpathmoveto\{\\pgfpoint\{\\startxb}\{\\startyb}}
+	\\pgfpatharc\{\\startangleb}\{\\endangleb}\{\\rx and \\ry}
 }
-\state{final}[width={\pgfkeysvalueof{/pgf/decoration/link length} - \pgfkeysvalueof{/pgf/decoration/link overlap}}]
-{
-	\def\linkwidth{\pgfkeysvalueof{/pgf/decoration/link width}}
-	\def\linklength{\pgfkeysvalueof{/pgf/decoration/link length}}
-	\def\linkoverlap{\pgfkeysvalueof{/pgf/decoration/link overlap}}
-	\def\startangle{-200}
-	\def\rx{0.5*\linklength}
-	\def\ry{0.5*\linkwidth}
-	\pgfmathparse{\rx+\rx*cos(\startangle)}\let\startx=\pgfmathresult
-	\pgfmathparse{\ry*sin(\startangle)}\let\starty=\pgfmathresult
-	\pgfpathmoveto{\pgfpoint{\startx}{\starty}}
-	\pgfpatharc{\startangle}{130}{\rx and \ry}
-	\pgfusepath{draw}
+\\state\{final}[width=\{\\pgfkeysvalueof\{/pgf/decoration/link length} - \\pgfkeysvalueof\{/pgf/decoration/link overlap}}]
+\{
+	\\def\\linkwidth\{\\pgfkeysvalueof\{/pgf/decoration/link width}}
+	\\def\\linklength\{\\pgfkeysvalueof\{/pgf/decoration/link length}}
+	\\def\\linkoverlap\{\\pgfkeysvalueof\{/pgf/decoration/link overlap}}
+	\\def\\startangle\{-200}
+	\\def\\rx\{0.5*\\linklength}
+	\\def\\ry\{0.5*\\linkwidth}
+	\\pgfmathparse\{\\rx+\\rx*cos(\\startangle)}\\let\\startx=\\pgfmathresult
+	\\pgfmathparse\{\\ry*sin(\\startangle)}\\let\\starty=\\pgfmathresult
+	\\pgfpathmoveto\{\\pgfpoint\{\\startx}\{\\starty}}
+	\\pgfpatharc\{\\startangle}\{130}\{\\rx and \\ry}
+	\\pgfusepath\{draw}
+	\\pgfsetlinewidth\{1pt}
 }
 }
 endsnippet
