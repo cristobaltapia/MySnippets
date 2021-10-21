@@ -11,7 +11,6 @@ link break/.initial=0pt,
 \\pgfdeclaredecoration\{chain}\{initial}\{
 \\state\{initial}[width=\{\\pgfkeysvalueof\{/pgf/decoration/link length} - \\pgfkeysvalueof\{/pgf/decoration/link overlap}},next state=mid]
 \{
-	\\pgfsetlinewidth\{\\pgflinewidth}
 	\\def\\linkwidth\{\\pgfkeysvalueof\{/pgf/decoration/link width}}
 	\\def\\linklength\{\\pgfkeysvalueof\{/pgf/decoration/link length}}
 	\\def\\startangle\{-20}
@@ -23,9 +22,9 @@ link break/.initial=0pt,
 	\\pgfpathmoveto\{\\pgfpoint\{\\startx}\{\\starty}}
 	\\pgfpatharc\{\\startangle}\{\\endangle}\{\\linklength*0.5 and \\linkwidth*0.5}
 	\\pgfpathmoveto\{\\pgfpoint\{\\startx}\{\\starty}}
-	\\pgfusepath\{draw}
+	% \\pgfusepath\{draw}
 }
-\\state\{mid}[width=\{\\pgfkeysvalueof\{/pgf/decoration/link length} - \\pgfkeysvalueof\{/pgf/decoration/link overlap}},switch if less than=\\pgfkeysvalueof\{/pgf/decoration/link break} to break,switch if input segment less than=\\pgfkeysvalueof\{/pgf/decoration/link length} to final]
+\\state\{mid}[width=\{\\pgfkeysvalueof\{/pgf/decoration/link length} - \\pgfkeysvalueof\{/pgf/decoration/link overlap}},switch if less than=\{\\pgfdecoratedpathlength*(1-\\pgfkeysvalueof\{/pgf/decoration/link break})} to break,switch if input segment less than=\\pgfkeysvalueof\{/pgf/decoration/link length} to final]
 \{
 	\\def\\linkwidth\{\\pgfkeysvalueof\{/pgf/decoration/link width}}
 	\\def\\linklength\{\\pgfkeysvalueof\{/pgf/decoration/link length}}
@@ -105,8 +104,7 @@ link break/.initial=0pt,
 	\\pgfmathparse\{\\ry*sin(\\startangle)}\\let\\starty=\\pgfmathresult
 	\\pgfpathmoveto\{\\pgfpoint\{\\startx}\{\\starty}}
 	\\pgfpatharc\{\\startangle}\{130}\{\\rx and \\ry}
-	\\pgfusepath\{draw}
-	\\pgfsetlinewidth\{1pt}
+	\\pgfpathmoveto\{\\pgfpointdecoratedpathlast}
 }
 }
 endsnippet
