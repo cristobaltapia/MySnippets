@@ -4,8 +4,9 @@ snippet tikz_chain "TikZ chain decoration" b
 \\tikzset\{/pgf/decoration/.cd,
 	link length/.initial=20pt,
 	link width/.initial=10pt,
-link overlap/.initial=4pt,
-link break/.initial=0pt,
+	link overlap/.initial=4pt,
+	link break/.initial=0pt,
+	break sep/.initial=4pt,
 }
 
 \\pgfdeclaredecoration\{chain}\{initial}\{
@@ -44,11 +45,12 @@ link break/.initial=0pt,
 	\\pgfpathmoveto\{\\pgfpoint\{\\startxb}\{\\startyb}}
 	\\pgfpatharc\{\\startangleb}\{\\endangleb}\{\\rx and \\ry}
 }
-\\state\{break}[width=\{\\pgfkeysvalueof\{/pgf/decoration/link length} - \\pgfkeysvalueof\{/pgf/decoration/link overlap}},next state=midtwo]
+\\state\{break}[width=\{\pgfkeysvalueof{/pgf/decoration/link length} - \pgfkeysvalueof{/pgf/decoration/link overlap} + \pgfkeysvalueof{/pgf/decoration/break sep}},next state=midtwo]
 \{
 	\\def\\linkwidth\{\\pgfkeysvalueof\{/pgf/decoration/link width}}
 	\\def\\linklength\{\\pgfkeysvalueof\{/pgf/decoration/link length}}
 	\\def\\linkoverlap\{\\pgfkeysvalueof\{/pgf/decoration/link overlap}}
+	\\def\\breaksep\{\\pgfkeysvalueof\{/pgf/decoration/break sep}}
 	\\def\\startanglea\{160}
 	\\def\\endanglea\{260}
 	\\def\\startangleb\{-70}
@@ -61,9 +63,9 @@ link break/.initial=0pt,
 	\\def\\ry\{0.5*\\linkwidth}
 	\\pgfmathparse\{\\rx+\\rx*cos(\\startanglea)}\\let\\startx=\\pgfmathresult
 	\\pgfmathparse\{\\ry*sin(\\startanglea)}\\let\\starty=\\pgfmathresult
-	\\pgfmathparse\{\\rx+\\rx*cos(\\startangleb)}\\let\\startxb=\\pgfmathresult
+	\\pgfmathparse\{\\breaksep+\\rx+\\rx*cos(\\startangleb)}\\let\\startxb=\\pgfmathresult
 	\\pgfmathparse\{\\ry*sin(\\startangleb)}\\let\\startyb=\\pgfmathresult
-	\\pgfmathparse\{\\rx+\\rx*cos(\\startanglec)}\\let\\startxc=\\pgfmathresult
+	\\pgfmathparse\{\\breaksep+\\rx+\\rx*cos(\\startanglec)}\\let\\startxc=\\pgfmathresult
 	\\pgfmathparse\{\\ry*sin(\\startanglec)}\\let\\startyc=\\pgfmathresult
 	\\pgfmathparse\{\\rx+\\rx*cos(\\startangled)}\\let\\startxd=\\pgfmathresult
 	\\pgfmathparse\{\\ry*sin(\\startangled)}\\let\\startyd=\\pgfmathresult
@@ -74,7 +76,7 @@ link break/.initial=0pt,
 	\\pgfpatharc\{\\startangleb}\{\\endangleb}\{\\rx and \\ry}
 	\\pgfpathmoveto\{\\pgfpoint\{\\startxc}\{\\startyc}}
 	\\pgfpatharc\{\\startanglec}\{\\endanglec}\{\\rx and \\ry}
-	\\pgfpathlineto\{\\pgfpointadd\{\\pgfpointpolar\{\\endanglec}\{\\rx*1.6 and \\ry*1.6}}\{\\pgfpoint\{\\rx-0.5*\\rx}\{\\ry*0.2}}}
+	\\pgfpathlineto\{\\pgfpointadd\{\\pgfpointpolar\{\\endanglec}\{\\rx*1.6 and \\ry*1.6}}\{\\pgfpoint\{\\breaksep+\\rx-0.5*\\rx}\{\\ry*0.2}}}
 	\\pgfpathmoveto\{\\pgfpoint\{\\startxd}\{\\startyd}}
 	\\pgfpatharc\{\\startangled}\{\\endangled}\{\\rx and \\ry}
 }
