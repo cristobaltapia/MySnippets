@@ -234,9 +234,10 @@ snippet skip "Skip isort"
 endsnippet
 
 # Annotation in matplotlib
-snippet ann "Annotation in Matploltib" b
-${1:ax}.annotate("${2:text}", xy=(${3:x,y}), xytext=(${4:x,y}),
-	textcoords="${5:offset points}", va="${6:top|bottom}", ha="${7:left|right}",
+snippet "(ax\d*).ann" "Annotation in Matploltib" br
+`!p
+snip.rv=match.group(1)`.annotate("${1:text}", xy=(${2:x,y}), xytext=(${3:x,y}),
+	textcoords="${4:offset points}", va="${5:top|bottom}", ha="${6:left|right}",
 	arrowprops={"arrowstyle": "->", "connectionstyle":"arc3,rad=0.3"}
 	)
 endsnippet
