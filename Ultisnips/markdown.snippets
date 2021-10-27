@@ -2,7 +2,7 @@
 global !p
 
 def is_german_lang():
-	lang = vim.options['spelllang']
+	lang = snip.buffer.options['spelllang']
 	if re.match('de', lang):
 		return True
 	else:
