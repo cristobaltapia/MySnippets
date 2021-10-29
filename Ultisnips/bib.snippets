@@ -27,3 +27,22 @@ snippet standard_DIN "DIN standard entry" b
 	year={$4}
 }
 endsnippet
+
+snippet inproceeding "Proceeding entry" b
+@inproceedings{`!p
+try:
+	m_name = re.findall(r'(\w+),', t[1])
+	res = ''.join(m_name[0]) + "_" + str(t[2])
+	snip.rv = res
+except:
+	snip.rv = "key"
+`,
+	title = {${3:title}},
+	author = {${1:authors}},
+	year = {${2:year}},
+	booktitle = {${4:conference}},
+	publisher = {${5:publisher}},
+	address = {${6:location}}
+}
+endsnippet
+
