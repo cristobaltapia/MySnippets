@@ -22,14 +22,17 @@ def is_math_context():
 		return False
 
 def math_from_left(line, col):
-	match = PATTERN.findall(line, 0, col)
+	match = PATTERN.findall(line, 0, col-2)
+	print(f"left {len(match)}")
+	print(match)
 	if len(match) % 2 == 0:
 		return False
 	else:
 		return True
 
 def math_from_right(line, col):
-	match = PATTERN.findall(line, col-1, (len(line)))
+	match = PATTERN.findall(line, col-2, (len(line)))
+	print(f"right {len(match)}")
 	if len(match) % 2 == 0:
 		return False
 	else:
