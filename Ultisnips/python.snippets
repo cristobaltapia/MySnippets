@@ -246,3 +246,13 @@ endsnippet
 snippet sci "Scientific notation for tick labels"
 ${1:ax}.ticklabel_format(axis='${2:y}', style='sci', scilimits=(-1, 1))$0
 endsnippet
+
+# Axes layout for double plot in presentations
+snippet figbeamer "Layout for two horizontal subplots in presentations"
+${1:fig} = plt.figure(figsize=(4.6, 2.4))
+${2:ax11} = $1.add_subplot(121)
+${3:ax12} = $1.add_subplot(122)
+$2.set_position([0.12, 0.20, 0.37, 0.70])
+$3.set_position([0.62, 0.20, 0.37, 0.70])
+$0
+endsnippet
