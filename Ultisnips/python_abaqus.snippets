@@ -51,14 +51,19 @@ endsnippet
 
 # create sketch
 snippet abqsketch "Create a sketch object" b
-sketch = ${1:model}.ConstrainedSketch(
-	name='${2:name}', sheetSize=200.)
+${1:sketch} = ${2:model}.ConstrainedSketch(
+	name='${3:name}', sheetSize=200.)
 ${0}
 endsnippet
 
 # create part (2D)
-snippet abqpart "Create an Abaqus part" b
-part = ${1:model}.Part(name='${2:name}', dimensionality=TWO_D_PLANAR, type=DEFORMABLE_BODY)
+snippet abqpart2D "Create an Abaqus part 2D" b
+${1:part} = ${2:model}.Part(name='${3:name}', dimensionality=TWO_D_PLANAR, type=DEFORMABLE_BODY)
+endsnippet
+
+# create part (3D)
+snippet abqpart3D "Create an Abaqus part 3D" b
+${1:part} = ${2:model}.Part(name='${3:name}', dimensionality=THREE_D, type=DEFORMABLE_BODY)
 endsnippet
 
 # Define elastic material (2D)
