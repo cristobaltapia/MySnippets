@@ -23,6 +23,9 @@ def math():
 		return first != ignore
 	except StopIteration:
 		return False
+
+def clean(s):
+	return s.replace(" ", "-")
 endglobal
 
 # Include standalone
@@ -227,4 +230,66 @@ snippet unis_colors "Define UniS colors" b
 \\definecolor\{uniSlightblue}\{RGB}\{0,190,255}
 \\definecolor\{uniSgray}\{RGB}\{62, 68, 76}
 \\definecolor\{uniSyellow}\{RGB}\{255, 213, 0}
+endsnippet
+
+# Part
+snippet part "document \part" b
+\\part{${1:part name}} % (fold)%
+\\label{prt:${2:`!p snip.rv = clean(t[1])`}}
+${0}
+% part $2 (end)
+endsnippet
+# Chapter
+snippet cha "\chapter" b
+\\chapter{${1:chapter name}}%
+\\label{cha:${2:`!p snip.rv = clean(t[1])`}}
+${0}
+endsnippet
+# Section
+snippet sec "\section" b
+\\section{${1:section name}}%
+\\label{sec:${2:`!p snip.rv = clean(t[1])`}}
+${0}
+endsnippet
+# Section without number
+snippet sec* "\section*" b
+\\section*{${1:section name}}%
+\\label{sec:${2:`!p snip.rv = clean(t[1])`}}
+${0}
+endsnippet
+# Sub Section
+snippet sub "\subsection" b
+\\subsection{${1:subsection name}}%
+\\label{sub:${2:`!p snip.rv = clean(t[1])`}}
+${0}
+endsnippet
+# Sub Section without number
+snippet sub* "\subsection*" b
+\\subsection*{${1:subsection name}}%
+\\label{sub:${2:`!p snip.rv = clean(t[1])`}}
+${0}
+endsnippet
+# Sub Sub Section
+snippet ssub "\subsubsection" b
+\\subsubsection{${1:subsubsection name}}%
+\\label{ssub:${2:`!p snip.rv = clean(t[1])`}}
+${0}
+endsnippet
+# Sub Sub Section without number
+snippet ssub* "\subsubsection*" b
+\\subsubsection*{${1:subsubsection name}}%
+\\label{ssub:${2:`!p snip.rv = clean(t[1])`}}
+${0}
+endsnippet
+# Paragraph
+snippet par "\paragraph" b
+\\paragraph{${1:paragraph name}}%
+\\label{par:${2:`!p snip.rv = clean(t[1])`}}
+${0}
+endsnippet
+# Sub Paragraph
+snippet subp "\subparagraph" b
+\\subparagraph{${1:subparagraph name}}%
+\\label{subp:${2:`!p snip.rv = clean(t[1])`}}
+${0}
 endsnippet
