@@ -247,3 +247,50 @@ ${1:data} = xyPlot.XYDataFromPath(path=${2:path}, name='${3:name}', includeInter
 			numIntervals=10, labelType=TRUE_DISTANCE,
 			variable=('S', INTEGRATION_POINT, ('S11', INTEGRATION_POINT)))
 endsnippet
+
+snippet abqsweepdir "Function to set sweep direction of mesh" b
+def set_sweep_direction(region, instance, model, direction="y"):
+	"""Change the sweep direction of the region.
+
+	Parameters
+	----------
+	region : Cell
+	model : Abaqus model
+	direction : str
+		Direction to set for the sweep
+
+	"""
+	asmbly = model.rootAssembly
+	# Get all the edges of the cell
+	edges = region.getEdges()
+
+	# Iterate over the edges until one is found in the right direction
+	for ei in edges:
+		# Get the edge
+		edge_i = instance.edges[ei]
+		# Get Vertices
+		v1_i, v2_i = edge_i.getVertices()
+		v1 = instance.vertices[v1_i]
+		v2 = instance.vertices[v2_i]
+		# Get coordinates of the vertices
+		coord_1 = v1.pointOn[0]
+		coord_2 = v2.pointOn[0]
+
+		if direction == "x":
+			if coord_1[1] == coord_2[1] and coord_1[2] == coord_2[2]:
+				sel_edge = edge_i
+				break
+		elif direction == "y":
+			if coord_1[0] == coord_2[0] and coord_1[2] == coord_2[2]:
+				sel_edge = edge_i
+				break
+		elif direction == "z":
+			if coord_1[0] == coord_2[0] and coord_1[1] == coord_2[1]:
+				sel_edge = edge_i
+				break
+
+	# Set the sweep direction
+	asmbly.setSweepPath(region=region, edge=sel_edge, sense=FORWARD)
+
+$0
+endsnippet
