@@ -59,11 +59,19 @@ endsnippet
 # create part (2D)
 snippet abqpart2D "Create an Abaqus part 2D" b
 ${1:part} = ${2:model}.Part(name='${3:name}', dimensionality=TWO_D_PLANAR, type=DEFORMABLE_BODY)
+$0
 endsnippet
 
 # create part (3D)
 snippet abqpart3D "Create an Abaqus part 3D" b
 ${1:part} = ${2:model}.Part(name='${3:name}', dimensionality=THREE_D, type=DEFORMABLE_BODY)
+$0
+endsnippet
+
+# create instance
+snippet abqinstance "Create an Abaqus instance" b
+${1:part} = ${2:rootAssembly}.Instance(name='${3:name}', part=${4:part}, dependent=${5:False})
+$0
 endsnippet
 
 # Define elastic material (2D)
