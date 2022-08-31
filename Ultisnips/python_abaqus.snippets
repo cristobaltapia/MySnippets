@@ -87,7 +87,7 @@ snippet abqmat3d "Create an Abaqus 3D elastic material" b
 ${1:props} = (${2:E1}, ${3:E2}, ${4:E3}, ${5:nu_12}, ${6:nu_13}, ${7:nu_23}, ${8:G12}, ${9:G13}, ${10:G23} )
 
 ${11:material} = ${12:model}.Material(name='${13:name}')
-$11.Elastic(table=($1, ), type=LAMINA)
+$11.Elastic(table=($1, ), type=ENGINEERING_CONSTANTS)
 endsnippet
 
 # Create section and assign to part
