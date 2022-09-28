@@ -208,7 +208,11 @@ endsnippet
 
 # Arrow properties in annotate
 snippet arrowprop "Add arrow properties to annotation" i
-arrowprops={"arrowstyle": "${1:->}", "connectionstyle":"${2:arc}"}
+arrowprops={
+	"arrowstyle": "${1:->}",
+	"connectionstyle":"${2:arc}",
+	"relpos": (0.5, 0.5)
+	}
 endsnippet
 
 # Bbox properties
