@@ -1,5 +1,19 @@
 extends tex
 
+global !p
+from math import sqrt
+
+def get_root_square(t):
+	try:
+		m = re.match(r"([\d\.]+)(.*)", t)
+		num = m.group(1)
+		unit = m.group(2)
+		height = round(float(num) / sqrt(2), 1)
+		return f"{height}{unit}"
+	except:
+		return t
+endglobal
+
 snippet tikz_chain "TikZ chain decoration" b
 \\tikzset\{/pgf/decoration/.cd,
 	link length/.initial=20pt,
@@ -115,4 +129,27 @@ snippet tikz_chain "TikZ chain decoration" b
 	\\pgfpathmoveto\{\\pgfpointdecoratedpathlast}
 }
 }
+endsnippet
+
+snippet axis "make an axis environment" b
+\\begin\{axis}[
+width=${1:5cm},
+height=`!p
+snip.rv = get_root_square(t[1])
+`,
+xmin=0, ymin=0, xmax=35, ymax=22,
+thick,
+axis x line*=bottom, axis y line*=left,
+major grid style=\{dotted,thick},
+xlabel=x, ylabel=y,
+axis line style=\{-stealth,thick},
+grid=major, samples=20,
+view=\{0}\{90}
+]
+
+\\addplot+[domain=0:30,mark=none]\{x+3};
+
+%\\addplot3[surf,colormap/viridis,samples=50,shader=interp,domain=0:30,domain y=0:20] \{4*x + 5*y};
+
+\\end\{axis}
 endsnippet
