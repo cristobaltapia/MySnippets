@@ -83,12 +83,16 @@ snippet qt "Typset number with unit (siunitx)" i
 \\qty\{$1}\{${2:unit}}$0
 endsnippet
 
-snippet qtp "Typset product of number with unit (siunitx)" i
+snippet qtp "Typset product of numbers with unit (siunitx)" i
 \\qtyproduct\{$1}\{${2:unit}}$0
 endsnippet
 
-snippet unit "Typset a unit (siunitx)" i
-\\unit\{$1}\{${2:unit}}$0
+snippet unit "Typset units (siunitx)" i
+\\unit\{$1}$0
+endsnippet
+
+snippet nump "Typset product of numbers (siunitx)" i
+\\numproduct\{$1}$0
 endsnippet
 
 snippet __ "Subscript" iA
