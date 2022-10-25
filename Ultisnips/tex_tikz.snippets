@@ -153,3 +153,8 @@ view=\{0}\{90}
 
 \\end\{axis}
 endsnippet
+
+snippet onslide "tikz style for changing key values with overlays" b
+\\tikzset\{onslide/.code args=\{<#1>#2}\{\\only<#1>\{\\pgfkeysalso\{#2}}}
+$0
+endsnippet
