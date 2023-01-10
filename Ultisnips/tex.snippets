@@ -287,3 +287,7 @@ snippet subp "\subparagraph" b
 \\label{subp:${2:`!p snip.rv = clean(t[1])`}}
 ${0}
 endsnippet
+
+snippet video "Include video in presentation" b
+\\href\{run:${1:../videos/file}.mp4?autostart}\{\\includegraphics[width=\\textwidth]\{${2:$1.pdf}}}
+endsnippet
