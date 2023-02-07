@@ -190,18 +190,6 @@ snippet emph "Emphasyze text" w
 \\emph\{$1}$0
 endsnippet
 
-priority 100
-context "math()"
-snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
-\\`!p snip.rv = match.group(1)`
-endsnippet
-
-priority 200
-context "math()"
-snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|zeta|int)' "ln" rwA
-\\`!p snip.rv = match.group(1)`
-endsnippet
-
 # Latex directives
 snippet directive_programm "Latex directive for the programm" b
 % !TeX TS-program = ${1:xelatex,pdflatex,lualatex}
