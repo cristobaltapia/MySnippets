@@ -198,28 +198,25 @@ endsnippet
 snippet rcparams_elsevier "rcParams for WCTE papers" b
 # Add the following befor importing pyplot:
 # import matplotlib as mpl
-# mpl.use('pgf')
 rc_params_wcte = {
-	"figure.figsize": (3.5, 2.5),
-	"axes.spines.right": False,
-	"axes.spines.top": False,
-	"font.size": 9,
-	"legend.fontsize": 9,
-	"axes.labelsize": 9,
-	"lines.linewidth": 1.0,
-	"lines.markersize": 5,
-	"text.usetex": True,
-	"pgf.rcfonts": False,
-	"pgf.texsystem": 'lualatex',
-	"pgf.preamble":(r"""\usepackage{fontspec}
-\PassOptionsToPackage{no-math}{fontspec}
-\usepackage{amsmath}
-\usepackage{siunitx}
-\usepackage{unicode-math}
-\setmainfont{Times New Roman}
-\setsansfont{Times New Roman}
-\setmathfont{Times New Roman}
-""" ),
+"figure.figsize": (3.2, 2.3),
+"axes.spines.right": False,
+"axes.spines.top": False,
+"font.size": 9,
+"legend.fontsize": 9,
+"axes.labelsize": 9,
+"lines.linewidth": 1.0,
+"lines.markersize": 5,
+"text.usetex": False,
+"font.family": "serif",
+'font.serif': 'Times New Roman',
+"mathtext.fontset": "custom",
+"mathtext.rm": "serif",
+"mathtext.sf": "serif",
+"mathtext.default": "it",
+"axes.formatter.use_mathtext": True,
+"pgf.rcfonts": True,
+"pgf.texsystem": 'lualatex',
 }
 mpl.rcParams.update(rc_params_wcte)
 # Optimal figure size one column: (3.2, 2.3)
