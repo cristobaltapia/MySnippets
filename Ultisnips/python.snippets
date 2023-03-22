@@ -194,6 +194,38 @@ mpl.rcParams.update(rc_params_elsevier)
 # Optimal figure size two columns: (7.48, 5.3)
 endsnippet
 
+# rc Params for WCTE papers
+snippet rcparams_elsevier "rcParams for WCTE papers" b
+# Add the following befor importing pyplot:
+# import matplotlib as mpl
+# mpl.use('pgf')
+rc_params_wcte = {
+	"figure.figsize": (3.5, 2.5),
+	"axes.spines.right": False,
+	"axes.spines.top": False,
+	"font.size": 9,
+	"legend.fontsize": 9,
+	"axes.labelsize": 9,
+	"lines.linewidth": 1.0,
+	"lines.markersize": 5,
+	"text.usetex": True,
+	"pgf.rcfonts": False,
+	"pgf.texsystem": 'lualatex',
+	"pgf.preamble":(r"""\usepackage{fontspec}
+\PassOptionsToPackage{no-math}{fontspec}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{unicode-math}
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman}
+\setmathfont{Times New Roman}
+""" ),
+}
+mpl.rcParams.update(rc_params_wcte)
+# Optimal figure size one column: (3.2, 2.3)
+# Optimal figure size two columns: (7.48, 5.3)
+endsnippet
+
 # Figure (Horizontal)
 snippet fig "Matplotlib horizontal figure" b
 ${1:fig} = plt.figure(${2:figsize=(${3:2.8}, `!p
