@@ -27,6 +27,34 @@ def ensure_dir(f):
 ${0}
 endsnippet
 
+snippet rcparams_mpa_report "rcParams for MPA report" b
+`!p
+mplstyle = r"""figure.figsize: 5.6, 4.2
+axes.spines.right: False
+axes.spines.top: False
+font.size: 9
+legend.fontsize: 9
+axes.labelsize: 9
+lines.linewidth: 1.0
+lines.markersize: 5
+text.usetex: True
+pgf.rcfonts: False
+pgf.texsystem: lualatex
+pgf.preamble: \usepackage{fontspec} \PassOptionsToPackage{no-math}{fontspec} \usepackage{amsmath} \usepackage{siunitx} \usepackage{unicode-math} \setmainfont{Arial} \setsansfont{Arial} \setmathfont{Fira Math}
+"""
+import os
+if not os.path.isfile("mpareport.mplstyle"):
+	with open("mpareport.mplstyle", "w") as f:
+		f.write(mplstyle)
+`
+# Add the following before importing pyplot:
+# import matplotlib as mpl
+# mpl.use('pgf')
+plt.style.use('mpareport.mplstyle')
+# Optimal figure size one column: (3.5, 2.5)
+# Optimal figure size two columns: (7.48, 5.3)
+endsnippet
+
 # rc Params for De Gruyter Journals
 snippet rcparams_gruyter "rcParams for De Gruyter Journals" b
 # Add the following befor importing pyplot:
@@ -164,61 +192,64 @@ endsnippet
 
 # rc Params for Elsevier Journals
 snippet rcparams_elsevier "rcParams for Elsevier Journals" b
-# Add the following befor importing pyplot:
+`!p
+mplstyle = r"""figure.figsize: 3.5, 2.5
+axes.spines.right: False
+axes.spines.top: False
+font.size: 8
+legend.fontsize: 8
+axes.labelsize: 8
+lines.linewidth: 1.0
+lines.markersize: 5
+text.usetex: True
+pgf.rcfonts: False
+pgf.texsystem: lualatex
+pgf.preamble: \usepackage{fontspec} \PassOptionsToPackage{no-math}{fontspec} \usepackage{amsmath} \usepackage{siunitx} \usepackage{unicode-math} \setmainfont{XCharter} \setsansfont{XCharter} \setmathfont{Latin Modern Math}
+"""
+import os
+if not os.path.isfile("elsevier.mplstyle"):
+	with open("elsevier.mplstyle", "w") as f:
+		f.write(mplstyle)
+`
+# Add the following before importing pyplot:
 # import matplotlib as mpl
 # mpl.use('pgf')
-rc_params_elsevier = {
-	"figure.figsize": (3.5, 2.5),
-	"axes.spines.right": False,
-	"axes.spines.top": False,
-	"font.size": 8,
-	"legend.fontsize": 8,
-	"axes.labelsize": 8,
-	"lines.linewidth": 1.0,
-	"lines.markersize": 5,
-	"text.usetex": True,
-	"pgf.rcfonts": False,
-	"pgf.texsystem": 'lualatex',
-	"pgf.preamble":(r"""\usepackage{fontspec}
-\PassOptionsToPackage{no-math}{fontspec}
-\usepackage{amsmath}
-\usepackage{siunitx}
-\usepackage{unicode-math}
-\setmainfont{XCharter}
-\setsansfont{XCharter}
-\setmathfont{Latin Modern Math}
-""" ),
-}
-mpl.rcParams.update(rc_params_elsevier)
+plt.style.use('elsevier.mplstyle')
 # Optimal figure size one column: (3.5, 2.5)
 # Optimal figure size two columns: (7.48, 5.3)
 endsnippet
 
 # rc Params for WCTE papers
-snippet rcparams_elsevier "rcParams for WCTE papers" b
-# Add the following befor importing pyplot:
+snippet rcparams_wcte "rcParams for WCTE papers" b
+`!p
+mplstyle = r"""figure.figsize: 3.2, 2.3
+axes.spines.right: False
+axes.spines.top: False
+font.size: 9
+legend.fontsize: 9
+axes.labelsize: 9
+lines.linewidth: 1.0
+lines.markersize: 5
+text.usetex: False
+pgf.rcfonts: True
+font.family: serif
+font.serif: Times New Roman
+mathtext.fontset: custom
+mathtext.rm: serif
+mathtext.sf: serif
+mathtext.default: it
+axes.formatter.use_mathtext: True
+pgf.texsystem: lualatex
+"""
+import os
+if not os.path.isfile("wcte.mplstyle"):
+	with open("wcte.mplstyle", "w") as f:
+		f.write(mplstyle)
+`
+# Add the following before importing pyplot:
 # import matplotlib as mpl
-rc_params_wcte = {
-"figure.figsize": (3.2, 2.3),
-"axes.spines.right": False,
-"axes.spines.top": False,
-"font.size": 9,
-"legend.fontsize": 9,
-"axes.labelsize": 9,
-"lines.linewidth": 1.0,
-"lines.markersize": 5,
-"text.usetex": False,
-"font.family": "serif",
-'font.serif': 'Times New Roman',
-"mathtext.fontset": "custom",
-"mathtext.rm": "serif",
-"mathtext.sf": "serif",
-"mathtext.default": "it",
-"axes.formatter.use_mathtext": True,
-"pgf.rcfonts": True,
-"pgf.texsystem": 'lualatex',
-}
-mpl.rcParams.update(rc_params_wcte)
+# mpl.use('pgf')
+plt.style.use('wcte.mplstyle')
 # Optimal figure size one column: (3.2, 2.3)
 # Optimal figure size two columns: (7.48, 5.3)
 endsnippet
