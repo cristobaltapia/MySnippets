@@ -40,7 +40,7 @@ lines.markersize: 5
 text.usetex: True
 pgf.rcfonts: False
 pgf.texsystem: lualatex
-pgf.preamble: \usepackage{fontspec} \PassOptionsToPackage{no-math}{fontspec} \usepackage{amsmath} \usepackage{siunitx} \usepackage{unicode-math} \setmainfont{Arial} \setsansfont{Arial} \setmathfont{Fira Math}
+pgf.preamble: \usepackage{fontspec} \PassOptionsToPackage{no-math}{fontspec} \usepackage{amsmath} \usepackage{siunitx} \usepackage{unicode-math} \setmainfont{Arial} \setsansfont{Arial} \setmathfont{Fira Math} \setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Arial} \setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Arial Bold} \setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Arial Italic} \setmathfont[range=\mathbfit/{num,greek,Greek}]{Arial Bold Italic}
 """
 import os
 if not os.path.isfile("mpareport.mplstyle"):
