@@ -107,6 +107,36 @@ plt.style.use('inter.mplstyle')
 # Optimal figure size: (3.4, 2.4)
 endsnippet
 
+# rc Params for MDPI paper
+snippet rcparams_MDPI "rcParams for MDPI papers" b
+`!p
+mplstyle = r"""figure.figsize: 5.4, 3.8
+font.size: 12
+font.family: serif
+font.serif: Palatino
+legend.fontsize: 10
+lines.markersize: 8
+lines.width: 1
+axes.spines.right: False
+axes.spines.top: False
+text.usetex: True
+pgf.rcfonts: True
+pgf.texsystem: pdflatex
+pgf.preamble: \usepackage{lipsum} \usepackage{newpxtext,newpxmath}
+"""
+import os
+if not os.path.isfile("mdpi.mplstyle"):
+	with open("mdpi.mplstyle", "w") as f:
+		f.write(mplstyle)
+`
+# Add the following before importing pyplot:
+# import matplotlib as mpl
+# mpl.use('pgf')
+plt.style.use('mdpi.mplstyle')
+# Optimal figure size: (5.4, 3.8)
+# Optimal figure size (extended): (7.3, 5.1)
+endsnippet
+
 # rc Params for MPA presentation
 snippet rcparams_mpa_presentation "rcParams for MPA presentation" b
 `!p
