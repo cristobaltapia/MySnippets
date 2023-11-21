@@ -109,6 +109,7 @@ endsnippet
 
 # define the viridis color map in abaqus
 snippet abqvir "Insert Viridis colormap to Abaqus" b
+# fmt: off
 # create viridis spectrum (we all love this! <3 )
 colors_viridis = (
 	'#440154', '#440255', '#440357', '#450558', '#45065a', '#45085b',
@@ -154,6 +155,7 @@ colors_viridis = (
 	'#d7e219', '#dae218', '#dce218', '#dfe318', '#e1e318', '#e4e318',
 	'#e7e419', '#e9e419', '#ece41a', '#eee51b', '#f1e51c', '#f3e51e',
 	'#f6e61f', '#f8e621', '#fae622', '#fde724')
+# fmt: on
 # Reversed viridis
 colors_viridis_reversed = list(reversed(colors_viridis))
 session.Spectrum(name="Viridis", colors=colors_viridis)
@@ -163,6 +165,7 @@ endsnippet
 
 # define the inferno color map in abaqus
 snippet abqinferno "Insert Inferno colormap to Abaqus" b
+# fmt: off
 # create inferno spectrum (we all love this! <3 )
 colors_inferno = (
 	'#000004', '#010005', '#010106', '#010108', '#02010a', '#02020c', '#02020e',
@@ -202,6 +205,7 @@ colors_inferno = (
 	'#f2e661', '#f2e865', '#f2ea69', '#f1ec6d', '#f1ed71', '#f1ef75', '#f1f179',
 	'#f2f27d', '#f2f482', '#f3f586', '#f3f68a', '#f4f88e', '#f5f992', '#f6fa96',
 	'#f8fb9a', '#f9fc9d', '#fafda1', '#fcffa4')
+# fmt: on
 # Reversed inferno
 colors_inferno_reversed = list(reversed(colors_inferno))
 session.Spectrum(name="Inferno", colors=colors_inferno)
