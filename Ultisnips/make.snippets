@@ -15,3 +15,36 @@ clean:
 	rm -rf venv
 	find -iname "*.pyc" -delete
 endsnippet
+
+snippet tikz "Convert all tikz figures in folder to SVG"
+SHELL := /bin/bash
+.PHONY=all clean
+.ONESHELL:
+
+all: $(addsuffix .svg, $(addprefix out/, $(basename $(shell ls | grep .tikz))))
+
+clean:
+	rm -r out
+
+out/%.svg: out/%.pdf
+	eval NPAGES=$(shell pdfinfo out/$*.pdf | grep Pages | awk '\{print $$2}')
+	@if (( $$\{NPAGES} > 1 )); then \\
+		for i in $$(seq 1 $$\{NPAGES}); do \\
+			inkscape --export-type=svg --pdf-poppler -l --pages=$$i --export-page=$$i --export-overwrite -D -o out/$*_$$i.svg out/$*.pdf; \\
+			echo $$i; \\
+		done; \\
+		cp out/$*_1.svg out/$*.svg
+	else \\
+		inkscape --export-type=svg -l --export-overwrite -D -o out/$*.svg out/$*.pdf; \\
+	fi
+
+out/%.pdf: %.tikz
+	latexmk -auxdir=.aux -emulate-aux-dir -outdir=out -pdflua -latexoption='-verbose -shell-escape -file-line-error -interaction=nonstopmode' $<
+	pdfcrop --bbox "$$(
+			pdfcrop --verbose out/$*.pdf |
+			grep '^%%HiResBoundingBox: ' |
+			cut -d' ' -f2- |
+			LC_ALL=C datamash -t' ' min 1 min 2 max 3 max 4
+		)" out/$*.pdf out/$*.pdf
+$0
+endsnippet
