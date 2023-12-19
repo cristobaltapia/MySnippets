@@ -6,6 +6,10 @@ snippet fig "Add a new figure"
 endsnippet
 
 snippet notepdfpc "Add note for pdfpc presentation" b
-#pdfpc.speaker-note("$1")
-$0
+#pdfpc.speaker-note(
+	```md
+	$1
+
+	```
+)$0
 endsnippet
