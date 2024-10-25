@@ -21,7 +21,7 @@ snippet cetz "add cetz canvas"
 })
 endsnippet
 
-snippet cetzplots "add cetz plot axis"
+snippet cetzplots "add cetz plot axis" b
 #cetz.canvas({
 	import cetz.draw: *
 
@@ -53,7 +53,7 @@ snippet cetzplots "add cetz plot axis"
 })
 endsnippet
 
-snippet mplcolors "Define matplotlib's default color palette"
+snippet mplcolors "Define matplotlib's default color palette" b
 // Matplotlib default color palette
 #let C0 = rgb("#1F77B4")
 #let C1 = rgb("#FF7F0E")
@@ -71,3 +71,16 @@ endsnippet
 snippet cetzstyle "Add style to a line in cetz-plot"
 style: (stroke: (thickness: 1pt, paint: red))$0
 endsnippet
+
+snippet slide "Add a new slide" b
+#slide()[
+	$0
+]
+endsnippet
+
+snippet slidecols "Add a new slide with columns" b
+#slide(composer: (${1:1fr, 1fr}))[
+	$0
+]
+endsnippet
+	
