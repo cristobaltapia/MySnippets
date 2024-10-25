@@ -13,3 +13,42 @@ snippet notepdfpc "Add note for pdfpc presentation" b
 	\`\`\`
 )$0
 endsnippet
+
+snippet cetz "add cetz canvas"
+#cetz.canvas({
+	import cetz.draw: *
+	$0
+})
+endsnippet
+
+snippet cetzplots "add cetz plot axis"
+#cetz.canvas({
+	import cetz.draw: *
+
+	set-style(
+		plot: (style: (stroke: 3pt)),
+		axes: (
+			y: (label: (angle: 90deg, offset: 2)),
+			x: (label: (offset: 1, anchor: "north-east")),
+		),
+	)
+
+	plot.plot(
+		size: (${1:x, y}),
+		axis-style: "left",
+		x-equal: "y",
+		x-min: 0,
+		y-min: 0,
+		x-max: 10,
+		y-max: 10,
+		y-tick-step: 2,
+		x-tick-step: 2,
+		x-label: [${2:x-label}],
+		y-label: [${3:y-label}],
+		{
+			plot.add(domain: (0, 10), x => x^2)
+			$0
+		},
+)
+})
+endsnippet
