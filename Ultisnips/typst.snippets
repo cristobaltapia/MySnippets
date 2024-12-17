@@ -90,14 +90,6 @@ snippet slidecols "Add a new slide with columns" b
 ]
 endsnippet
 	
-snippet slide "New normal slide" b
-#slide[
-	== ${1:title}
-
-	$0
-]
-endsnippet
-
 snippet slide_focus "Focus slide" b
 #focus-slide[
 	$0
@@ -120,3 +112,6 @@ snippet col "Add content in columns" b
 ]
 endsnippet
 
+snippet brace "Add brace" b
+cetz.tecorations.brace((${1:coord1}), (${2:coord2}))$0
+endsnippet
