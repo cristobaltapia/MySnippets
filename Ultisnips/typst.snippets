@@ -74,6 +74,10 @@ snippet cetzstyle "Add style to a line in cetz-plot"
 style: (stroke: (thickness: 1pt, paint: red))$0
 endsnippet
 
+snippet cetzsetstyle "Set style in cetz"
+set-style(stroke: (thickness: 1pt, paint: ${1:red}))$0
+endsnippet
+
 snippet slide "Add a new slide" b
 #slide()[
 	$0
@@ -86,3 +90,33 @@ snippet slidecols "Add a new slide with columns" b
 ]
 endsnippet
 	
+snippet slide "New normal slide" b
+#slide[
+	== ${1:title}
+
+	$0
+]
+endsnippet
+
+snippet slide_focus "Focus slide" b
+#focus-slide[
+	$0
+]
+endsnippet
+
+snippet slide_center "Centered slide" b
+#centered-slide[
+	= ${1:title}
+
+	$0
+]
+endsnippet
+
+snippet col "Add content in columns" b
+#side-by-side[
+	$1
+][
+	$0
+]
+endsnippet
+
