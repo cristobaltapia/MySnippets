@@ -104,6 +104,14 @@ snippet slide_center "Centered slide" b
 ]
 endsnippet
 
+snippet columns "Side-by-side columns in presentation" b
+#components.side-by-side(columns: (${1:1fr, 1fr}))[
+	$0
+][
+
+]
+endsnippet
+
 snippet col "Add content in columns" b
 #side-by-side[
 	$1
