@@ -48,3 +48,30 @@ out/%.pdf: %.tikz
 		)" out/$*.pdf out/$*.pdf
 $0
 endsnippet
+
+snippet sync "Add rul to sync to remote directory" b
+# Sync configuration
+DEST_DIR ?= /mnt/mpa/51200/Abteilung/${1:remote_dir}
+
+# Sync rule to copy local files to mounted network drive
+.PHONY: sync
+
+sync:
+	rsync -avz --delete \
+		--exclude '*.pyc' \
+		--exclude '*.log' \
+		--exclude '*.ipm' \
+		--exclude '*.rec' \
+		--exclude '*.rpy*' \
+		--exclude '*.dat' \
+		--exclude '*.com' \
+		--exclude '*.inp' \
+		--exclude '*.env' \
+		--exclude '*.msg' \
+		--exclude '*.prt' \
+		--exclude '*.sta' \
+		--exclude '*.aux' \
+		--exclude '__pycache__' \
+		--exclude '.DS_Store' \
+		./ $(DEST_DIR)/
+endsnippet
