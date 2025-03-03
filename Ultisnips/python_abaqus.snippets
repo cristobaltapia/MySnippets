@@ -298,3 +298,11 @@ def set_sweep_direction(region, instance, model, direction="y"):
 
 $0
 endsnippet
+
+snippet abqtypes "Add abaqus types" b
+from abaqus import ModelType
+from part import PartType
+from assembly import PartInstanceType, SurfaceType
+from sketch import ConstrainedSketchType
+$0
+endsnippet
