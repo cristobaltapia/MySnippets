@@ -37,6 +37,9 @@ snippet cetztouying "add cetz canvas in presentation"
 endsnippet
 
 snippet cetzplots "add cetz plot axis" b
+#import "@preview/cetz:0.4.0"
+#import "@preview/cetz-plot:0.1.2": *
+
 #cetz.canvas({
 	import cetz.draw: *
 
@@ -61,7 +64,7 @@ snippet cetzplots "add cetz plot axis" b
 		x-label: [${2:x-label}],
 		y-label: [${3:y-label}],
 		{
-			plot.add(domain: (0, 10), x => x^2)
+			plot.add(domain: (0, 10), x => calc.pow(x, 2))
 			$0
 		},
 	)
