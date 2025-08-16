@@ -1,0 +1,23 @@
+snippet classbuild123d "Add custom build123d object" b
+class ${1:ClassName}(${2:BaseSketchObject|BasePartObject}):
+	def __init__(
+		self,
+		height: float,
+		rotation: float = 0,
+		align: `!p
+if t[2] == "BaseSketchObject":
+	snip.rv = "tuple[Align, Align] = (Align.CENTER, Align.CENTER)"
+elif t[2] == "BasePartObject":
+	snip.rv = "tuple[Align, Align, Align] = (Align.CENTER, Align.CENTER, Align.CENTER)"
+else:
+	snip.rv = "tuple[] = ()"
+		`,
+		mode: Mode = Mode.ADD,
+	):
+		with BuildSketch() as `!p
+snip.rv = t[1].lower()
+		`:
+			${0}
+
+		super().__init__(obj=club.sketch, rotation=rotation, align=align, mode=mode)
+endsnippet
