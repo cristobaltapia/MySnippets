@@ -2,8 +2,15 @@ snippet classbuild123d "Add custom build123d object" b
 class ${1:ClassName}(${2:BaseSketchObject|BasePartObject}):
 	def __init__(
 		self,
-		height: float,
-		rotation: float = 0,
+		${3: params},
+		rotation: `!p
+if t[2] == "BaseSketchObject":
+	snip.rv = "float = 0"
+elif t[2] == "BasePartObject":
+	snip.rv = "RotationLike = (0, 0, 0)"
+else:
+	snip.rv = "= 0"
+		`,
 		align: `!p
 if t[2] == "BaseSketchObject":
 	snip.rv = "tuple[Align, Align] = (Align.CENTER, Align.CENTER)"
@@ -14,10 +21,16 @@ else:
 		`,
 		mode: Mode = Mode.ADD,
 	):
-		with BuildSketch() as `!p
-snip.rv = t[1].lower()
-		`:
+		with BuildSketch() as `!p snip.rv = t[1].lower()`:
 			${0}
 
-		super().__init__(obj=club.sketch, rotation=rotation, align=align, mode=mode)
+		super().__init__(part=`!p snip.rv = t[1].lower()`, rotation=rotation, align=align, mode=mode)
+		`!p
+if t[2] == "BaseSketchObject":
+	snip.rv = f"super().__init__(obj={t[1].lower()}.sketch, rotation=rotation, align=align, mode=mode)"
+elif t[2] == "BasePartObject":
+	snip.rv = f"super().__init__(part={t[1].lower()}.part, rotation=rotation, align=align, mode=mode)"
+else:
+	snip.rv = "super().__init__()"
+		`
 endsnippet
