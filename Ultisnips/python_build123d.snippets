@@ -24,7 +24,6 @@ else:
 		with BuildSketch() as `!p snip.rv = t[1].lower()`:
 			${0}
 
-		super().__init__(part=`!p snip.rv = t[1].lower()`, rotation=rotation, align=align, mode=mode)
 		`!p
 if t[2] == "BaseSketchObject":
 	snip.rv = f"super().__init__(obj={t[1].lower()}.sketch, rotation=rotation, align=align, mode=mode)"
