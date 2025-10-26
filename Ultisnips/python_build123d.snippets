@@ -21,7 +21,7 @@ else:
 		`,
 		mode: Mode = Mode.ADD,
 	):
-		with BuildSketch() as `!p snip.rv = t[1].lower()`:
+		with `!p snip.rv = t[2]`() as `!p snip.rv = t[1].lower()`:
 			${0}
 
 		`!p
