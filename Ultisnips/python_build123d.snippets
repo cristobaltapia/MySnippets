@@ -22,13 +22,13 @@ else:
 		mode: Mode = Mode.ADD,
 	):
 		with `!p
-		if t[2] == "BaseSketchObject":
-			snip.rv = "BuildSketch"
-		elif t[2] == "BasePartObject":
-			snip.rv = "BuildPart"
-		else:
-			snip.rv = "BuildPart"`() as `!p snip.rv = t[1].lower()`:
-			${0}
+if t[2] == "BaseSketchObject":
+	snip.rv = "BuildSketch"
+elif t[2] == "BasePartObject":
+	snip.rv = "BuildPart"
+else:
+	snip.rv = "BuildPart"`() as `!p snip.rv = t[1].lower()`:
+${0}
 
 		`!p
 if t[2] == "BaseSketchObject":
