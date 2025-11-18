@@ -25,7 +25,7 @@ endsnippet
 
 snippet cetztouying "add cetz canvas in presentation"
 #import "@preview/touying:0.6.1": *
-#import "@preview/cetz:0.4.0"
+#import "@preview/cetz:0.4.2"
 
 // cetz bindings for touying
 #let cetz-canvas = touying-reducer.with(reduce: cetz.canvas, cover: cetz.draw.hide.with(bounds: true))
@@ -37,7 +37,7 @@ snippet cetztouying "add cetz canvas in presentation"
 endsnippet
 
 snippet cetzplots "add cetz plot axis" b
-#import "@preview/cetz:0.4.0"
+#import "@preview/cetz:0.4.2"
 #import "@preview/cetz-plot:0.1.2": *
 
 #cetz.canvas({
@@ -154,4 +154,20 @@ endsnippet
 
 snippet touyingutils "Add uncover, only and alternatives methods"
 #let (uncover, only, alternatives) = utils.methods(self)
+endsnippet
+
+snippet cetzpresentate "Add CetZ animation to a presentata document" b
+#import "@preview/presentate:0.2.1": *
+#import "@preview/cetz:0.4.2": canvas, draw
+
+#render(s => ({
+	import animation: *
+	let (uncover, pause) = settings(hider: draw.hide.with(bounds: true))
+	let only = only.with(hider: draw.hide.with(bounds: true))
+
+	canvas({
+		import draw: *
+		$0
+	})
+}, s))
 endsnippet
