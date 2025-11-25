@@ -86,12 +86,8 @@ snippet mplcolors "Define matplotlib's default color palette" b
 $0
 endsnippet
 
-snippet cetzstyle "Add style to a line in cetz-plot"
-style: (stroke: (thickness: 1pt, paint: red))$0
-endsnippet
-
 snippet cetzsetstyle "Set style in cetz"
-set-style(stroke: (thickness: 1pt, paint: ${1:red}))$0
+set-style(${1:stroke: (thickness: 1.5pt)})$0
 endsnippet
 
 snippet cetz3d "Make 3D drawing with cetz"
