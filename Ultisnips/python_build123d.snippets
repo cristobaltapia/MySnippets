@@ -41,16 +41,16 @@ else:
 endsnippet
 
 snippet bd_p "Build part" b
-with BuildPart() as ${1:part}:
+with BuildPart(${1}) as ${2:part}:
 	$0
 endsnippet
 
 snippet bd_s "Build sketch" b
-with BuildSketch() as ${1:sketch}:
+with BuildSketch(${1}) as ${2:sketch}:
 	$0
 endsnippet
 
 snippet bd_l "Build line" b
-with BuildLine() as ${1:line}:
+with BuildLine(${1}) as ${2:line}:
 	$0
 endsnippet
