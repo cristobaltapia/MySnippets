@@ -92,7 +92,16 @@ endsnippet
 
 snippet cetz3d "Make 3D drawing with cetz"
 ortho(\{
-	on-${1: xz|xy|yz}(\{
+	on-${1: xz|xy|yz}(`!p
+if t[1] == "xy":
+	snip.rv = "z: "
+elif t[1] == "xz":
+	snip.rv = "y: "
+elif t[1] == "yz":
+	snip.rv = "x: "
+else:
+	snip.rv = ""
+	`${2:val},\{
 		$0
 	})
 })
