@@ -76,3 +76,22 @@ sync:
 		--exclude '.DS_Store' \
 		./ $(DEST_DIR)/
 endsnippet
+
+snippet template_cpp "template for c++ Makefiles"
+.PHONY: all clean
+
+all: ${1:main}
+
+clean:
+	rm $1
+
+$1: $1.cpp
+	g++ -Wall \
+		-Weffc++ \
+		-Wextra \
+		-std=c++23 \
+		-Wconversion \
+		-Wsign-conversion \
+		-pedantic-errors \
+		-o $1 $1.cpp
+endsnippet
