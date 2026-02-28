@@ -83,16 +83,19 @@ snippet template_cpp "template for c++ Makefiles"
 CPPFLAGS=-Wall -Weffc++ -Wextra -std=c++23 -Wconversion \
 		-Wsign-conversion -pedantic-errors
 
+SRCS=$1.cpp
+OBJS=$(subst .cc,.o,$(SRCS))
+
 all: ${1:main}
+
+$1: $1.o
+	g++ $(CPPFLAGS) -o main $(OBJS)
+
+%.o: %.cpp
+	g++ $(CPPFLAGS) -c $<
 
 clean:
 	rm $1
 	rm *.o
-
-$1: $1.o add.o
-	g++ $(CPPFLAGS) -o main main.o add.o
-
-%.o: %.cpp
-	g++ $(CPPFLAGS) -c $<
 
 endsnippet
