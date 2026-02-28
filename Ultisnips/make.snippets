@@ -80,19 +80,19 @@ endsnippet
 snippet template_cpp "template for c++ Makefiles"
 .PHONY: all clean
 
+CPPFLAGS=-Wall -Weffc++ -Wextra -std=c++23 -Wconversion \
+		-Wsign-conversion -pedantic-errors
+
 all: ${1:main}
 
 clean:
 	rm $1
+	rm *.o
 
-$1: $1.cpp
-	g++ -Wall \
-		-Weffc++ \
-		-Wextra \
-		-std=c++23 \
-		-Wconversion \
-		-Wsign-conversion \
-		-pedantic-errors \
-		-o $1 $1.cpp
-$0
+$1: $1.o add.o
+	g++ $(CPPFLAGS) -o main main.o add.o
+
+%.o: %.cpp
+	g++ $(CPPFLAGS) -c $<
+
 endsnippet
