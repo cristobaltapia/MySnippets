@@ -81,7 +81,7 @@ snippet template_cpp "template for c++ Makefiles"
 .PHONY: all clean
 
 CPPFLAGS=-Wall -Weffc++ -Wextra -std=c++23 -Wconversion \
-		-Wsign-conversion -pedantic-errors
+		-Wsign-conversion -ggdb -pedantic-errors
 
 SRCS=$1.cpp
 OBJS=$(subst .cc,.o,$(SRCS))
