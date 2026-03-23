@@ -30,17 +30,16 @@ endsnippet
 snippet rcparams_mpa_report "rcParams for MPA report" b
 `!p
 mplstyle = r"""figure.figsize: 5.6, 4.2
+figure.figsize: 5.6, 4.2
 axes.spines.right: False
 axes.spines.top: False
-font.size: 9
-legend.fontsize: 9
-axes.labelsize: 9
+font.size: 8
+legend.fontsize: 8
+axes.labelsize: 8
 lines.linewidth: 1.0
 lines.markersize: 5
-text.usetex: True
-pgf.rcfonts: False
-pgf.texsystem: lualatex
-pgf.preamble: \usepackage{fontspec} \PassOptionsToPackage{no-math}{fontspec} \usepackage{amsmath} \usepackage{siunitx} \usepackage{unicode-math} \setmainfont{Arial} \setsansfont{Arial} \setmathfont{Fira Math} \setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Arial} \setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{Arial Bold} \setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{Arial Italic} \setmathfont[range=\mathbfit/{num,greek,Greek}]{Arial Bold Italic}
+text.usetex: False
+pgf.rcfonts: True
 """
 import os
 if not os.path.isfile("mpareport.mplstyle"):
