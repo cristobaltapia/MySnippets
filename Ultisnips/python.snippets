@@ -1,5 +1,15 @@
 global !p
 from itertools import product
+import re
+
+def to_snake(s):
+	"""Convert string from CamelCase to snake_case."""
+	m = re.findall(r"([A-Z][a-z]*)", s)
+	if m:
+		a = [t.lower() for t in m]
+		return "_".join(a)
+	else:
+		return ""
 
 def rows_cols_to_str(r, c):
 	r = int(r)
@@ -365,4 +375,16 @@ ${3:ax12} = $1.add_subplot(122)
 $2.set_position([0.12, 0.20, 0.37, 0.70])
 $3.set_position([0.62, 0.20, 0.37, 0.70])
 $0
+endsnippet
+
+# Class for tests
+snippet classtest "Class definition for pytest" b
+class Test${1:ClassName}:
+	"""Test methods for the $1 class."""
+
+	def test_`!p
+snip.rv=to_snake(t[1])
+`(self):
+		`!p snip.rv=to_snake(t[1])` = $1($2)
+		$0
 endsnippet
